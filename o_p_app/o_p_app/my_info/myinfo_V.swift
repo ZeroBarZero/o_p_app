@@ -23,11 +23,18 @@ class myinfo_V : UIView {
         self.backgroundColor = .white
 
         self.addSubview(titleLabel)
+        self.addSubview(avatar)
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight))
+            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
+            
+            avatar.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            avatar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            avatar.widthAnchor.constraint(equalToConstant: 128),
+            avatar.heightAnchor.constraint(equalToConstant: 128),
             ])
     }
     let titleLabel : UILabel = {
@@ -40,5 +47,15 @@ class myinfo_V : UIView {
         return label
     }()
     
+    lazy var avatar: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "avatar.jpg"))
+//        imageView.autoSetDimensions(to: CGSize(width: 128.0, height: 128.0))
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.layer.cornerRadius = 64.0
+        imageView.clipsToBounds = true  // 이미지 radius대로 자름
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
 
 }
