@@ -105,6 +105,9 @@ class search_V : UIView {
 }
 // 추천콜렉션뷰
 class recommendationCollectionView : UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // didSelect에서 사용하는 delegate 정의
+    var delegate : search_VC_delegate?
+    
     var collectionview: UICollectionView!
     var cellId = "Cell2"
     
@@ -140,7 +143,14 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
 //            ])
 
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath as IndexPath)!
+//        print(cell)
+        
+        //delegate 로 nav로 뷰 이동.
+        delegate?.navMoveDelegate(self, index: indexPath.row)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
@@ -170,6 +180,7 @@ class recommendationCollectCell : UICollectionViewCell {
         self.layer.borderColor = Defaull_style.mainTitleColor.cgColor
         self.layer.borderWidth = 0.5
         
+
         backgroundColor = .white
         
         addSubview(studyNameLabel)
@@ -260,6 +271,14 @@ class categoryCollectView : UIView,TagListViewDelegate{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // hsb random color
+    func HSBrandomColor() -> UIColor{
+        let saturation : CGFloat =  0.45
+        let brigtness : CGFloat = 0.85
+        let randomHue = CGFloat.random(in: 0.0..<1.0)
+        //        print(UIColor(hue: CGFloat(randomHue), saturation: saturation, brightness: brigtness, alpha: 1))
+        return UIColor(hue: CGFloat(randomHue), saturation: saturation, brightness: brigtness, alpha: 1)
+    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -272,7 +291,11 @@ class categoryCollectView : UIView,TagListViewDelegate{
         biggerTagListView.shadowOpacity = 0.4
         biggerTagListView.shadowColor = UIColor.black
         biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
-        biggerTagListView.addTags(["안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지"])
+//        biggerTagListView.tagBackgroundColor = HSBrandomColor()
+        biggerTagListView.addTags(["안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지"])
+        for i in biggerTagListView.tagViews{
+            i.tagBackgroundColor = HSBrandomColor()
+        }
         biggerTagListView.alignment = .left
         
         biggerTagListView.translatesAutoresizingMaskIntoConstraints = false

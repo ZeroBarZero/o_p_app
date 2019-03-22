@@ -8,27 +8,76 @@
 
 import UIKit
 
-class search_VC: UIViewController {
+// view에서 nav로 다른 view로 이동할 때 사용하는 delegate 정의
+protocol search_VC_delegate : class {
+    func navMoveDelegate(_ sender : recommendationCollectionView, index : Int )
+}
+
+class search_VC: UIViewController,search_VC_delegate {
+    func navMoveDelegate(_ sender: recommendationCollectionView     , index: Int) {
+        print("델리게이트")
+        let moveView = studyDetail_VC()
+        moveView.bottomViewCheck = true
+            
+        self.navigationController?.pushViewController(moveView, animated: true)
+//        let nav = UINavigationController()
+//        nav.viewControllers = [studyDetail_VC()]
+//        nav.modalTransitionStyle = .crossDissolve
+//        self.present(nav, animated: true, completion: nil)
+//        nav.pushViewController(nav, animated: true)
+    }
+    var search_Collection : recommendationCollectionView?
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+
+    }
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        print("will")
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.visibleViewController?.title = "탐색하기"
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
         
-        view.backgroundColor = .white
-        let mainView = search_V()
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mainView)
-        let margins = view.layoutMarginsGuide
         
+        view.backgroundColor = .white
+        let mainView = search_V() 
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        // delegate 위해
+        mainView.recommendationCollectView.delegate = self
+
+        view.addSubview(scrollView)
+        scrollView.addSubview(mainView)
+        
+        // layout
+        let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
+            
+            mainView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
-            mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+            // FIXIT : 오토 height 으로 바꾸기.
+            mainView.heightAnchor.constraint(equalToConstant: 1000),
+            
+            mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0)
             ])
     }
+    let scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .cyan
+        return v
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

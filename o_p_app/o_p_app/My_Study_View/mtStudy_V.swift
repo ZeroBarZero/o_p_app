@@ -53,6 +53,7 @@ class myStudy_V : UIView {
     
 }
 class myStudy_V_TV : UIView {
+    var delegate : myStudy_VC_delegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -89,6 +90,9 @@ class myStudy_V_TV : UIView {
 extension myStudy_V_TV : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.navMoveDelegate(self)
     }
 }
 extension myStudy_V_TV : UITableViewDataSource{

@@ -20,7 +20,8 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        let tabBarController = UITabBarController()
+
         // 탐색하기
         let tabOne = search_VC()
         let tabOneBarItem = UITabBarItem(title: "탐색하기", image: UIImage(named: "defaultImage.png"), selectedImage: UIImage(named: "selectedImage.png"))
@@ -46,10 +47,12 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
         
         tabFour.tabBarItem = tabFourBarItem4
         
-
+        
         self.viewControllers = [tabOne, tabTwo, tabThree,tabFour]
+        
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
         
     }
     

@@ -26,6 +26,9 @@
 		4ABF9707223E8DE7006FFD40 /* studyMesseger_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF9706223E8DE7006FFD40 /* studyMesseger_V.swift */; };
 		4ABF9709223E8DF4006FFD40 /* myinfo_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF9708223E8DF4006FFD40 /* myinfo_V.swift */; };
 		4ABF970B223E8E00006FFD40 /* myinfo_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF970A223E8E00006FFD40 /* myinfo_VM.swift */; };
+		4ABF970E22428C12006FFD40 /* studyDetail_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF970D22428C12006FFD40 /* studyDetail_VC.swift */; };
+		4ABF971022428C19006FFD40 /* studyDetail_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF970F22428C19006FFD40 /* studyDetail_V.swift */; };
+		4ABF971222428C30006FFD40 /* studyDetail_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF971122428C30006FFD40 /* studyDetail_VM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		4ABF9706223E8DE7006FFD40 /* studyMesseger_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyMesseger_V.swift; sourceTree = "<group>"; };
 		4ABF9708223E8DF4006FFD40 /* myinfo_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myinfo_V.swift; sourceTree = "<group>"; };
 		4ABF970A223E8E00006FFD40 /* myinfo_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myinfo_VM.swift; sourceTree = "<group>"; };
+		4ABF970D22428C12006FFD40 /* studyDetail_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyDetail_VC.swift; sourceTree = "<group>"; };
+		4ABF970F22428C19006FFD40 /* studyDetail_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyDetail_V.swift; sourceTree = "<group>"; };
+		4ABF971122428C30006FFD40 /* studyDetail_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyDetail_VM.swift; sourceTree = "<group>"; };
 		7791C2CACA7A829AE450E88F /* Pods-o_p_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.release.xcconfig"; sourceTree = "<group>"; };
 		B089DB718B13DD7A426E9D5A /* Pods_o_p_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_o_p_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F21E7259D04A715E8DD0EE /* Pods-o_p_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +102,7 @@
 		4ABF96DB223E105A006FFD40 /* o_p_app */ = {
 			isa = PBXGroup;
 			children = (
+				4ABF970C22428BED006FFD40 /* study_detail */,
 				4ABF96FD223E846E006FFD40 /* my_info */,
 				4ABF96F2223E1296006FFD40 /* Study_messeger.View */,
 				4ABF96F1223E1261006FFD40 /* My_Study_View */,
@@ -149,6 +156,16 @@
 				4ABF970A223E8E00006FFD40 /* myinfo_VM.swift */,
 			);
 			path = my_info;
+			sourceTree = "<group>";
+		};
+		4ABF970C22428BED006FFD40 /* study_detail */ = {
+			isa = PBXGroup;
+			children = (
+				4ABF970D22428C12006FFD40 /* studyDetail_VC.swift */,
+				4ABF970F22428C19006FFD40 /* studyDetail_V.swift */,
+				4ABF971122428C30006FFD40 /* studyDetail_VM.swift */,
+			);
+			path = study_detail;
 			sourceTree = "<group>";
 		};
 		89B2BAB21DC2DDF40F180528 /* Frameworks */ = {
@@ -274,16 +291,19 @@
 				4ABF9709223E8DF4006FFD40 /* myinfo_V.swift in Sources */,
 				4ABF970B223E8E00006FFD40 /* myinfo_VM.swift in Sources */,
 				4ABF96F8223E15BB006FFD40 /* ViewController.swift in Sources */,
+				4ABF970E22428C12006FFD40 /* studyDetail_VC.swift in Sources */,
 				4ABF9701223E85D3006FFD40 /* mtStudy_V.swift in Sources */,
 				4ABF96DF223E105A006FFD40 /* search_VC.swift in Sources */,
 				4ABF96FF223E8487006FFD40 /* myInfo_VC.swift in Sources */,
 				4ABF96FA223E1B44006FFD40 /* search_VM.swift in Sources */,
+				4ABF971022428C19006FFD40 /* studyDetail_V.swift in Sources */,
 				4ABF96F6223E136F006FFD40 /* studyMesseger_VC.swift in Sources */,
 				4ABF96FC223E1BE2006FFD40 /* search_V.swift in Sources */,
 				4ABF9707223E8DE7006FFD40 /* studyMesseger_V.swift in Sources */,
 				4ABF96DD223E105A006FFD40 /* AppDelegate.swift in Sources */,
 				4ABF96F4223E1359006FFD40 /* myStudy_VC.swift in Sources */,
 				4ABF96EF223E1174006FFD40 /* custom_style.swift in Sources */,
+				4ABF971222428C30006FFD40 /* studyDetail_VM.swift in Sources */,
 				4ABF9703223E85DC006FFD40 /* mySearch_VM.swift in Sources */,
 				4ABF9705223E8DD5006FFD40 /* studyMesseger_VM.swift in Sources */,
 			);
@@ -436,7 +456,10 @@
 				DEVELOPMENT_TEAM = 9DJXYBHDAK;
 				INFOPLIST_FILE = o_p_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "haeun.o-p-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -453,7 +476,10 @@
 				DEVELOPMENT_TEAM = 9DJXYBHDAK;
 				INFOPLIST_FILE = o_p_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "haeun.o-p-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

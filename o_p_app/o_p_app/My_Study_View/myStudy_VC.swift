@@ -9,18 +9,39 @@
 import Foundation
 import UIKit
 
-class myStudy_VC : UIViewController {
+// delegate
+protocol myStudy_VC_delegate : class {
+    func navMoveDelegate(_ sender : myStudy_V_TV)
+}
+class myStudy_VC : UIViewController,myStudy_VC_delegate {
+    func navMoveDelegate(_ sender: myStudy_V_TV) {
+        print("test")
+        let moveView = studyDetail_VC()
+        moveView.bottomViewCheck = false
+
+        self.navigationController?.pushViewController(moveView, animated: true)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = .white
 
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
         
         
         view.backgroundColor = .white
         let mainView = myStudy_V()
+        mainView.tableView.delegate = self
         mainView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mainView)
         let margins = view.layoutMarginsGuide

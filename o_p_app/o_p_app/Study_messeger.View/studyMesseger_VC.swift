@@ -10,11 +10,18 @@ import Foundation
 import UIKit
 
 class studyMessager_VC : UIViewController {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.title = "내메신저"
         view.backgroundColor = .white
 
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
         
