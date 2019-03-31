@@ -17,13 +17,14 @@ class myInfo_VC : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
         view.backgroundColor = .white
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
-        
+        self.navigationController?.visibleViewController?.title = "내정보"
+
         view.backgroundColor = .white
         let mainView = myinfo_V()
         mainView.translatesAutoresizingMaskIntoConstraints = false

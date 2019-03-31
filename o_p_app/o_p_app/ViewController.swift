@@ -20,7 +20,7 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let tabBarController = UITabBarController()
+//        let tabBarController = UITabBarController()
 
         // 탐색하기
         let tabOne = search_VC()

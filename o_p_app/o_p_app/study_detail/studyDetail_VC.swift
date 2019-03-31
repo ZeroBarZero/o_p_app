@@ -9,7 +9,21 @@
 import Foundation
 import UIKit
 
-class studyDetail_VC : UIViewController {
+// delegate...
+protocol studyDetail_VC_Delegate {
+    func alertDelegate()
+}
+class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
+    func alertDelegate() {
+        let showAlert = UIAlertController(title: "가입신청이벤트", message: "그냥나중에이벤트", preferredStyle: .alert)
+        
+        showAlert.addAction(UIAlertAction(title: "넵", style: .default, handler: nil))
+        showAlert.addAction(UIAlertAction(title: "아나용", style: .cancel, handler: nil))
+        
+        self.present(showAlert, animated: true)
+
+    }
+    
     // 내 스터디가 아닌 경우에는 없앰
     var bottomViewCheck : Bool? = nil
     
@@ -18,13 +32,20 @@ class studyDetail_VC : UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        bottomView.delegate = self
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.navigationItem.leftBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+        self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+        self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
+        
 
-        // 뷰 겹치는거 방지
-        self.navigationController!.navigationBar.isTranslucent = false
-        self.navigationItem.title = "내스터디"
-        // 아래 그림자 생기는거 지우기
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        // 뷰 겹치는거 방지
+//        self.navigationController!.navigationBar.isTranslucent = false
+//        self.navigationController?.visibleViewController?.title = "내스터디"
+//        // 아래 그림자 생기는거 지우기
+////        self.navigationController?.navigationBar.shadowImage = UIImage()
 
         self.view.backgroundColor = .white
         self.view.addSubview(mainView)
@@ -42,6 +63,7 @@ class studyDetail_VC : UIViewController {
             ])
         // bottomView 확인
         if bottomViewCheck != nil && bottomViewCheck == true {
+            
             self.view.addSubview(bottomView)
             NSLayoutConstraint.activate([
                 bottomView.heightAnchor.constraint(equalToConstant: CGFloat(height)),
@@ -51,11 +73,19 @@ class studyDetail_VC : UIViewController {
                 bottomView.topAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 0)
                 ])
         }
+        
+        if bottomViewCheck == false {
+            let heartBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_5656_heart"), style: .plain, target: self, action: #selector(heartBtnEvent))
+            let messegeBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_5656_message"), style: .plain, target: self, action: #selector(messegaBtnEvent))
+            self.navigationItem.rightBarButtonItems = [heartBtn,messegeBtn]
+        }
     }
-    @objc func leftBarBtnAction() {
-        self.dismiss(animated: true, completion: nil)
+    @objc func heartBtnEvent() {
+        alertDelegate()
     }
-    
+    @objc func messegaBtnEvent() {
+        alertDelegate()
+    }
     let mainView : studyDetail_V = {
         let view = studyDetail_V()
         view.backgroundColor = .white

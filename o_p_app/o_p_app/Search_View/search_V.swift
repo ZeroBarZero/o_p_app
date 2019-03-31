@@ -28,20 +28,22 @@ class search_V : UIView {
     }
     func initView(){
         // addsubview
-        self.addSubview(titleLabel)
+//        self.addSubview(titleLabel)
         self.addSubview(recommendationLabel)
         self.addSubview(recommendationCollectView)
         self.addSubview(categoryRecomenLabel)
+        self.addSubview(categoryRecomenBtn)
         self.addSubview(categoryRecomendCollectView)
+        
         
         // constraint
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
+//            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+//            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+//            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
             
-            recommendationLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            recommendationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             recommendationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             recommendationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
@@ -53,6 +55,10 @@ class search_V : UIView {
             categoryRecomenLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             categoryRecomenLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
+            categoryRecomenBtn.centerYAnchor.constraint(equalTo: categoryRecomenLabel.centerYAnchor),
+            categoryRecomenBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            categoryRecomenBtn.leadingAnchor.constraint(lessThanOrEqualTo: categoryRecomenLabel.trailingAnchor, constant: 0),
+            
             categoryRecomendCollectView.topAnchor.constraint(equalTo: categoryRecomenLabel.bottomAnchor, constant: 10),
             categoryRecomendCollectView.widthAnchor.constraint(equalTo: widthAnchor),
             categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 200),
@@ -63,6 +69,7 @@ class search_V : UIView {
         recommendationLabel.text = testData.name + " 님을 위한 스터디입니다."
 
     }
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.text = "탐색하기"
@@ -95,7 +102,16 @@ class search_V : UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    let categoryRecomenBtn : UIButton = {
+        let button = UIButton()
+        button.setTitle("전체보기", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        button.setTitleColor(Defaull_style.grayTitleColor, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
+
     let categoryRecomendCollectView : categoryCollectView = {
         let collect = categoryCollectView()
         collect.backgroundColor = .white
@@ -146,7 +162,7 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath as IndexPath)!
-//        print(cell)
+        print(cell)
         
         //delegate 로 nav로 뷰 이동.
         delegate?.navMoveDelegate(self, index: indexPath.row)
@@ -183,16 +199,20 @@ class recommendationCollectCell : UICollectionViewCell {
 
         backgroundColor = .white
         
+        addSubview(studyCateLabel)
         addSubview(studyNameLabel)
         addSubview(detailOnlineOrOfflineLabel)
         addSubview(detailLocationLabel)
         addSubview(detailWeekLabel)
         addSubview(detailMemberLabel)
         
-        let eachOtherPadding = CGFloat(5)
+        let eachOtherPadding = CGFloat(3)
         
         NSLayoutConstraint.activate([
-            studyNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachOtherPadding),
+            studyCateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachOtherPadding),
+            studyCateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            
+            studyNameLabel.topAnchor.constraint(equalTo: studyCateLabel.bottomAnchor, constant: eachOtherPadding),
             studyNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             studyNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
 
@@ -214,6 +234,15 @@ class recommendationCollectCell : UICollectionViewCell {
 
             ])
     }
+    let studyCateLabel : UILabel = {
+        let label = UILabel()
+        label.text = "카테고리"
+        label.textColor = Defaull_style.subTitleColor
+        label.font = UIFont.systemFont(ofSize: 12, weight: .heavy)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     let studyNameLabel : UILabel = {
         let label = UILabel()
         label.text = "스터디명"
@@ -261,7 +290,7 @@ class recommendationCollectCell : UICollectionViewCell {
 
 // 카테고리 뷰
 
-class categoryCollectView : UIView,TagListViewDelegate{
+class categoryCollectView : UIView, TagListViewDelegate{
     var biggerTagListView = TagListView()
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -285,16 +314,19 @@ class categoryCollectView : UIView,TagListViewDelegate{
         
 //        backgroundColor = .red
         biggerTagListView.delegate = self
-        biggerTagListView.textFont = .systemFont(ofSize: 20)
-        biggerTagListView.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
-        biggerTagListView.shadowRadius = 2
-        biggerTagListView.shadowOpacity = 0.4
-        biggerTagListView.shadowColor = UIColor.black
-        biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
+        biggerTagListView.textFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+//        biggerTagListView.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+//        biggerTagListView.shadowRadius = 2
+//        biggerTagListView.shadowOpacity = 0.4
+//        biggerTagListView.shadowColor = UIColor.black
+//        biggerTagListView.shadowOffset = CGSize(width: 1, height: 1)
+        biggerTagListView.paddingX = 5
+        biggerTagListView.paddingY = 5
 //        biggerTagListView.tagBackgroundColor = HSBrandomColor()
-        biggerTagListView.addTags(["안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지","안녕", "하시오", "반갑수다", "뭐하시오", "이거는", "카테고리", "카테고리이렇게보여줘야지"])
+        biggerTagListView.addTags(["#해시태그","#해시태그","#해시태그해시태그","#해시태그","#해시태그","#해시태그","#해시태그","#해시태그","#해시태그해시태그","#해시태그","#해시태그","#해시태그해시태그"])
+        biggerTagListView.tagBackgroundColor = UIColor.clear
         for i in biggerTagListView.tagViews{
-            i.tagBackgroundColor = HSBrandomColor()
+            i.textColor = HSBrandomColor()
         }
         biggerTagListView.alignment = .left
         

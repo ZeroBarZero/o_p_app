@@ -22,15 +22,15 @@ class studyMesseger_V : UIView {
         super.layoutSubviews()
         self.backgroundColor = .white
 
-        self.addSubview(titleLabel)
+//        self.addSubview(titleLabel)
         self.addSubview(tableView)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
+//            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+//            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+//            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
             
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)

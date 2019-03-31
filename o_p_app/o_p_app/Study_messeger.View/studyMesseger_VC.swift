@@ -19,7 +19,7 @@ class studyMessager_VC : UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.title = "내메신저"
+        self.navigationController?.visibleViewController?.title = "내메신저"
         view.backgroundColor = .white
 
         self.navigationController?.navigationBar.largeTitleTextAttributes =

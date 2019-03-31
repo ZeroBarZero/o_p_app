@@ -20,37 +20,42 @@ class search_VC: UIViewController,search_VC_delegate {
         moveView.bottomViewCheck = true
             
         self.navigationController?.pushViewController(moveView, animated: true)
-//        let nav = UINavigationController()
-//        nav.viewControllers = [studyDetail_VC()]
-//        nav.modalTransitionStyle = .crossDissolve
-//        self.present(nav, animated: true, completion: nil)
-//        nav.pushViewController(nav, animated: true)
     }
     var search_Collection : recommendationCollectionView?
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
 
     }
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        print("will")
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-
+    }
+    func initView(){
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.visibleViewController?.title = "탐색하기"
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
+        self.navigationItem.leftBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+        self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+        self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
+        
+        // 뷰 겹치는거 방지
+        self.navigationController!.navigationBar.isTranslucent = false
+        // 까만거 지우려고
+        self.navigationController!.view.backgroundColor = .white
+        // 아래 그림자 생기는거 지우기
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         
         view.backgroundColor = .white
-        let mainView = search_V() 
+        let mainView = search_V()
         mainView.translatesAutoresizingMaskIntoConstraints = false
         // delegate 위해
         mainView.recommendationCollectView.delegate = self
-
+        
         view.addSubview(scrollView)
         scrollView.addSubview(mainView)
         
@@ -70,6 +75,14 @@ class search_VC: UIViewController,search_VC_delegate {
             
             mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0)
             ])
+        
+
+    }
+    @objc func addBtnEvent(){
+        DispatchQueue.main.async
+            {
+                self.navigationController?.pushViewController(add_Study_VC(), animated: true)
+        }
     }
     let scrollView: UIScrollView = {
         let v = UIScrollView()
@@ -81,6 +94,15 @@ class search_VC: UIViewController,search_VC_delegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        initView()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnEvent))
+        
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+
     }
 }
 

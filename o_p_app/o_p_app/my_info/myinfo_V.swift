@@ -22,17 +22,17 @@ class myinfo_V : UIView {
         super.layoutSubviews()
         self.backgroundColor = .white
 
-        self.addSubview(titleLabel)
+//        self.addSubview(titleLabel)
         self.addSubview(avatar)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
+//            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+//            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+//            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
             
             avatar.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-            avatar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            avatar.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             avatar.widthAnchor.constraint(equalToConstant: 128),
             avatar.heightAnchor.constraint(equalToConstant: 128),
             ])
