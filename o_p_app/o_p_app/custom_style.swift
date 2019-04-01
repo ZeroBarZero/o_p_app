@@ -25,4 +25,7 @@ struct Defaull_style {
     static var topTableViewCorner = 10
     static var insideTableViewCorner = 8
     static var mainTitleHeight = 80
+    
+    static var mainMargin = 20
+    static var insideMargin = 10
 }

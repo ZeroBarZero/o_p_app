@@ -153,6 +153,7 @@ class studyDetail_V : UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     let detailLocationLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)

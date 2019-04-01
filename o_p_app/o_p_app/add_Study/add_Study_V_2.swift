@@ -13,10 +13,22 @@ import TextFieldEffects
 import AnimatedTextInput
 import IQKeyboardManagerSwift
 
-class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate {
+class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInputDelegate {
+    
+//    var delegate : popupView_delegate?
+    
+    func animatedTextInputDidEndEditing(animatedTextInput: AnimatedTextInput) {
+        if studyInfoTextInput.text != "" && studyTitleTextInput.text != "" {
+            progressIndex = 1
+            progressBarWithoutLastState.currentIndex = progressIndex
+        }
+
+    }
+    
+    var progressIndex = 0
     var progressBar: FlexibleSteppedProgressBar!
     var progressBarWithoutLastState: FlexibleSteppedProgressBar!
-    
+
     // 선택 동그라미 색
     var backgroundColor1 = #colorLiteral(red: 0.09955967218, green: 0.5711624026, blue: 0.4547557235, alpha: 1)
     // 동그라미 색
@@ -51,7 +63,9 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate {
         // 기본 정보
         self.addSubview(descriptionLabel_1)
         self.addSubview(studyTitleTextInput)
+        studyTitleTextInput.delegate = self
         self.addSubview(studyInfoTextInput)
+        studyInfoTextInput.delegate = self
         // 디테일 작성
         self.addSubview(descriptionLabel_2)
         self.addSubview(week_selection)
@@ -81,7 +95,7 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate {
         
         self.addSubview(member_selection)
         member_selection.tapAction = {
-            
+//            self.delegate?.presentPopupView()
         }
         self.addSubview(location_selection)
         location_selection.tapAction = {
@@ -168,7 +182,7 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate {
         progressBarWithoutLastState.currentSelectedCenterColor = progressColor
         progressBarWithoutLastState.stepTextColor = textColorHere
         progressBarWithoutLastState.currentSelectedTextColor = progressColor
-        progressBarWithoutLastState.currentIndex = 0
+        progressBarWithoutLastState.currentIndex = progressIndex
         
     }
     let descriptionLabel_1 : UILabel = {
@@ -307,15 +321,21 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate {
 
 class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
     let weekStr = ["월","화","수","목","금","토","일"]
+    var delegate : popupView_delegate?
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.presentPopupView()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekStr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = weekStr[indexPath.row]
-        //        print(weekStr[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! weekView_TV_Cell
+
+        cell.weekLabel.text = weekStr[indexPath.row]
+        cell.detailLocationLabel.text = "시간을 추가하세요."
+        print(weekStr[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -328,7 +348,7 @@ class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.register(weekView_TV_Cell.self, forCellReuseIdentifier: "cell")
         self.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -350,15 +370,49 @@ class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
 }
 
 class weekView_TV_Cell : UITableViewCell {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.addSubview(weekLabel)
+        self.addSubview(weekLabelView)
+        weekLabelView.addSubview(detailLocationLabel)
+        
+        let margin = CGFloat(Defaull_style.insideMargin)
+        
+        NSLayoutConstraint.activate([
+                weekLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
+                weekLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: margin),
+                
+                weekLabelView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
+                weekLabelView.leadingAnchor.constraint(equalTo: weekLabel.trailingAnchor, constant: 0),
+                weekLabelView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+                
+                detailLocationLabel.centerYAnchor.constraint(equalTo: weekLabelView.centerYAnchor, constant: 0),
+                detailLocationLabel.centerXAnchor.constraint(equalTo: weekLabelView.centerXAnchor, constant: 0),
+                
+            ])
+    }
+    let weekLabelView : UIView = {
+        let view = UIView()
+//        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let weekLabel : UILabel = {
        let label = UILabel()
+        label.textColor = Defaull_style.mainTitleColor
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     let detailLocationLabel : UILabel = {
         let label = UILabel()
-        label.textColor = Defaull_style.mainTitleColor
+        label.textColor = Defaull_style.whiteGray
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+//        label.backgroundColor = .red
         label.text = "시간 선택"
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

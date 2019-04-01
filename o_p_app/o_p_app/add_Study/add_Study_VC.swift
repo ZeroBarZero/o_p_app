@@ -9,7 +9,19 @@
 import Foundation
 import UIKit
 
-class add_Study_VC : UIViewController {
+protocol popupView_delegate {
+    func presentPopupView()
+}
+
+
+class add_Study_VC : UIViewController , popupView_delegate{
+    func presentPopupView() {
+        let vc = add_Study_table_cell_popupView()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,6 +31,8 @@ class add_Study_VC : UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.view.addSubview(scrollView)
         scrollView.addSubview(mainView)
+        
+        mainView.week_selectView.delegate = self
         
         let margins = view.layoutMarginsGuide
 
