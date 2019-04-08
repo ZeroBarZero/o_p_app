@@ -12,6 +12,26 @@ import UIKit
 protocol dismissPopView {
     func dismissPopView()
 }
+// 서버로 보낼 데이터 Model
+class studyInfo {
+    let title : String
+    let description : String
+    let studyWeekInfo : String
+    let maxMember : Int
+    let place : String
+    
+    init(title:String,
+         description :String,
+         studyWeekInfo : String,
+         maxMember : Int,
+         place : String) {
+        self.title = title
+        self.description = description
+        self.studyWeekInfo = studyWeekInfo
+        self.maxMember = maxMember
+        self.place = place
+    }
+}
 class add_Study_table_cell_popupView : UIViewController, dismissPopView {
     func dismissPopView() {
         dismiss(animated: true, completion: nil)
@@ -46,7 +66,7 @@ class add_Study_table_cell_popupView : UIViewController, dismissPopView {
 
 class popupView_View : UIView {
     var delegate : dismissPopView?
-    var startStackBool : Bool = true
+    var startStackBoolUseBtn : Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,7 +91,11 @@ class popupView_View : UIView {
         stackView.addArrangedSubview(endStack)
         
         self.addSubview(timePickerStart)
-        self.addSubview(enter_Btn)
+        self.addSubview(btnStack)
+        
+        btnStack.addArrangedSubview(first_to_next_Btn)
+
+//        self.addSubview(enter_Btn)
 //
         NSLayoutConstraint.activate([
             weekLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
@@ -86,11 +110,11 @@ class popupView_View : UIView {
             timePickerStart.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             timePickerStart.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
 //            timePickerStart.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
-            enter_Btn.heightAnchor.constraint(equalToConstant: 50),
-            enter_Btn.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
-            enter_Btn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            enter_Btn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            enter_Btn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            btnStack.heightAnchor.constraint(equalToConstant: 50),
+            btnStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
+            btnStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            btnStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            btnStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             ])
         enter_Btn.addTarget(self, action: #selector(dismissPopViewDelegate), for: .touchDown)
     }
@@ -146,6 +170,7 @@ class popupView_View : UIView {
     }()
     let endStack : UIStackView = {
         let stack = UIStackView()
+        stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fillEqually
@@ -167,11 +192,19 @@ class popupView_View : UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    let btnStack : UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+//        stack.spacing = 2
+        return stack
+    }()
 
     let enter_Btn : UIButton = {
         let button = UIButton()
-//        button.addTarget(self, action: #selector(joinBtnEvent), for: .touchDown)
+        //        button.addTarget(self, action: #selector(joinBtnEvent), for: .touchDown)
         button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.setTitleColor(UIColor.white, for: .normal)
@@ -180,5 +213,50 @@ class popupView_View : UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    let first_to_next_Btn : UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(first_to_next_action), for: .touchDown)
+        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = Defaull_style.themeColor
+        button.setTitle("다음", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    let before_Btn : UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(back_action), for: .touchDown)
+        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = Defaull_style.themeColor
+        button.setTitle("이전", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    // 다음 버튼 이벤트
+    @objc func first_to_next_action(){
+//        btnStack.removeArrangedSubview(first_to_next_Btn)
+        if startStackBoolUseBtn {
+            first_to_next_Btn.removeFromSuperview()
+            btnStack.addArrangedSubview(before_Btn)
+            btnStack.addArrangedSubview(first_to_next_Btn)
+            // TEXT COLOR CHANGE
+            startBtn.setTitleColor(Defaull_style.mainTitleColor, for: .normal)
+            endBtn.setTitleColor(Defaull_style.themeColor, for: .normal)
+            startStackBoolUseBtn = false
+        }else{
+            delegate?.dismissPopView()
+        }
+    }
+    @objc func back_action(){
+        before_Btn.removeFromSuperview()
+        first_to_next_Btn.removeFromSuperview()
+        
+        btnStack.addArrangedSubview(first_to_next_Btn)
+        startBtn.setTitleColor(Defaull_style.themeColor, for: .normal)
+        endBtn.setTitleColor(Defaull_style.mainTitleColor, for: .normal)
+        startStackBoolUseBtn = true
+    }
 }
