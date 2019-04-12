@@ -10,16 +10,38 @@ import Foundation
 import UIKit
 
 protocol popupView_delegate {
-    func presentPopupView()
+    func presentWeekPopupView(index:Int)
+    func presentmemberPopView()
+    func passingWeekValue(s:String)
+    func passingMemberValue(s:String)
 }
 
-
 class add_Study_VC : UIViewController , popupView_delegate{
-    func presentPopupView() {
+    var currentIndex : Int?
+    
+    func presentWeekPopupView(index:Int) {
         let vc = add_Study_table_cell_popupView()
+        vc.delegate = self
+        currentIndex = index
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
+    }
+    func presentmemberPopView(){
+        let vc = add_Study_selectPeople_popVIew()
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
+
+    }
+    func passingWeekValue(s:String){
+        print(s)
+        mainView.week_selectView.weekData[currentIndex!] = s
+        mainView.week_selectView.tableView.reloadData()
+    }
+    func passingMemberValue(s:String){
+        mainView.member_selection.text = s
     }
 
     override func viewDidLoad() {
@@ -28,10 +50,11 @@ class add_Study_VC : UIViewController , popupView_delegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         self.view.addSubview(scrollView)
         scrollView.addSubview(mainView)
         
+        mainView.delegate = self
         mainView.week_selectView.delegate = self
         
         let margins = view.layoutMarginsGuide

@@ -15,7 +15,7 @@ import IQKeyboardManagerSwift
 
 class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInputDelegate {
     
-//    var delegate : popupView_delegate?
+    var delegate : popupView_delegate?
     
     func animatedTextInputDidEndEditing(animatedTextInput: AnimatedTextInput) {
         if studyInfoTextInput.text != "" && studyTitleTextInput.text != "" {
@@ -39,11 +39,15 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
     var maxIndex = -1
     
     var heightConstraint : NSLayoutConstraint?
-
+    var locationHeightconstraint : NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         heightConstraint = self.week_selectView.heightAnchor.constraint(equalToConstant: 0)
         heightConstraint?.isActive = true
+        
+        locationHeightconstraint = self.location_View.heightAnchor.constraint(equalToConstant: 0)
+        locationHeightconstraint?.isActive = true
 
     }
     
@@ -52,7 +56,6 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         
         self.backgroundColor = .white
         IQKeyboardManager.shared.enable = true
@@ -70,7 +73,7 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
         self.addSubview(descriptionLabel_2)
         self.addSubview(week_selection)
         week_selection.tapAction = {
-            
+            // height 변경하는 코드 텍스트 아래에 뷰 보이게 함
             if self.week_selectView.isHidden {
                 self.week_selectView.isHidden = false
                 self.heightConstraint?.isActive = false
@@ -88,33 +91,43 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
                 UIView.animate(withDuration: 1, animations: {
                     self.week_selectView.layoutIfNeeded()
                 }, completion: nil)
-
             }
         }
         self.addSubview(week_selectView)
         
         self.addSubview(member_selection)
         member_selection.tapAction = {
-//            self.delegate?.presentPopupView()
+            print("tap")
+            self.delegate?.presentmemberPopView()
         }
         self.addSubview(location_selection)
         location_selection.tapAction = {
-            
-        }
+            if self.location_View.isHidden {
+                self.location_View.isHidden = false
+                self.locationHeightconstraint?.isActive = false
+                self.locationHeightconstraint = self.location_View.heightAnchor.constraint(equalToConstant: 60)
+                self.locationHeightconstraint?.isActive = true
+                UIView.animate(withDuration: 1, animations: {
+                    self.location_View.layoutIfNeeded()
+                }, completion: nil)
+                
+            }else {
+                self.location_View.isHidden = true
+                self.locationHeightconstraint?.isActive = false
+                self.locationHeightconstraint = self.location_View.heightAnchor.constraint(equalToConstant: 0)
+                self.locationHeightconstraint?.isActive = true
+                UIView.animate(withDuration: 1, animations: {
+                    self.location_View.layoutIfNeeded()
+                }, completion: nil)
+            }
 
-        
-        //        self.addSubview(bottomView)
-        
+        }
+        self.addSubview(location_View)
+
         _ = Int(self.frame.height/8)
         
         
         NSLayoutConstraint.activate([
-            
-            //            bottomView.heightAnchor.constraint(equalToConstant: CGFloat(height)),
-            //            bottomView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            //            bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            //            bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-            //
             
             progressBarWithoutLastState.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             progressBarWithoutLastState.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
@@ -156,7 +169,11 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
             location_selection.topAnchor.constraint(equalTo: member_selection.bottomAnchor, constant: 10),
             location_selection.leadingAnchor.constraint(equalTo: progressBarWithoutLastState.leadingAnchor, constant: 0),
             location_selection.trailingAnchor.constraint(equalTo: progressBarWithoutLastState.trailingAnchor, constant: 0),
-            location_selection.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+//            location_selection.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+            location_View.topAnchor.constraint(equalTo: location_selection.bottomAnchor, constant: 0),
+            location_View.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            location_View.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            location_View.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
             ])
 
@@ -263,6 +280,13 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
         return select
     }()
     
+    let location_View : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     let bottomView : studyDetail_Bottom_V = {
         let view = studyDetail_Bottom_V()
         view.leftString = "스터디 생성 준비 완료"
@@ -320,11 +344,17 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
 }
 
 class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
+    
     let weekStr = ["월","화","수","목","금","토","일"]
+    var weekData = Array(repeating: "시간을 추가하세요.", count: 7)
+//    var selectIndex : Int?
+    
+
     var delegate : popupView_delegate?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.presentPopupView()
+        let selectIndex = indexPath.row
+        delegate?.presentWeekPopupView(index : selectIndex)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekStr.count
@@ -334,8 +364,8 @@ class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! weekView_TV_Cell
 
         cell.weekLabel.text = weekStr[indexPath.row]
-        cell.detailLocationLabel.text = "시간을 추가하세요."
-        print(weekStr[indexPath.row])
+        cell.detailLocationLabel.text = weekData[indexPath.row]
+//        print(weekStr[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

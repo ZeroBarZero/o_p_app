@@ -8,32 +8,19 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol dismissPopView {
-    func dismissPopView()
-}
-// 서버로 보낼 데이터 Model
-class studyInfo {
-    let title : String
-    let description : String
-    let studyWeekInfo : String
-    let maxMember : Int
-    let place : String
-    
-    init(title:String,
-         description :String,
-         studyWeekInfo : String,
-         maxMember : Int,
-         place : String) {
-        self.title = title
-        self.description = description
-        self.studyWeekInfo = studyWeekInfo
-        self.maxMember = maxMember
-        self.place = place
-    }
+    func dismissPopView(s:String)
 }
 class add_Study_table_cell_popupView : UIViewController, dismissPopView {
-    func dismissPopView() {
+    var delegate : popupView_delegate?
+    
+    func dismissPopView(s:String) {
+        if s != "?"{
+            delegate?.passingWeekValue(s: s)
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -68,6 +55,9 @@ class popupView_View : UIView {
     var delegate : dismissPopView?
     var startStackBoolUseBtn : Bool = true
     
+    var startSaveTime : String = ""
+    var endSaveTime : String = ""
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         startBtn.setTitleColor(Defaull_style.themeColor, for: .normal)
@@ -90,18 +80,18 @@ class popupView_View : UIView {
         stackView.addArrangedSubview(startStack)
         stackView.addArrangedSubview(endStack)
         
+        changeAndCancleStack.addArrangedSubview(btnStack)
+        changeAndCancleStack.addArrangedSubview(enter_Btn)
+        
         self.addSubview(timePickerStart)
-        self.addSubview(btnStack)
+        self.addSubview(changeAndCancleStack)
+        
+        timePickerStart.addTarget(nil, action: #selector(pickerChanged(_:)), for: .valueChanged)
         
         btnStack.addArrangedSubview(first_to_next_Btn)
-
-//        self.addSubview(enter_Btn)
-//
         NSLayoutConstraint.activate([
             weekLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-//            weekLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
             weekLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-//
             stackView.topAnchor.constraint(equalTo: weekLabel.bottomAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
@@ -109,17 +99,42 @@ class popupView_View : UIView {
             timePickerStart.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
             timePickerStart.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             timePickerStart.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-//            timePickerStart.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
-            btnStack.heightAnchor.constraint(equalToConstant: 50),
-            btnStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
-            btnStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            btnStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            btnStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            
+            changeAndCancleStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
+            changeAndCancleStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            changeAndCancleStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            changeAndCancleStack.heightAnchor.constraint(equalToConstant: 80),
+            changeAndCancleStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+//            btnStack.heightAnchor.constraint(equalToConstant: 50),
+//            btnStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
+//            btnStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            btnStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+////            btnStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+//            enter_Btn.topAnchor.constraint(equalTo: btnStack.bottomAnchor, constant: 0),
+//            enter_Btn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            enter_Btn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+//            enter_Btn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             ])
+        // 삭제할거임..아니면 취소버튼으로 만둘기~~
         enter_Btn.addTarget(self, action: #selector(dismissPopViewDelegate), for: .touchDown)
     }
+    @objc func pickerChanged(_ picker : UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        print(picker.date)
+        
+        first_to_next_Btn.isEnabled = true
+        if startStackBoolUseBtn {
+            startTimeLabel.text = dateFormatter.string(from: picker.date)
+            startSaveTime = dateFormatter.string(from: picker.date)
+        }else{
+            endTimeLabel.text = dateFormatter.string(from: picker.date)
+            endSaveTime = dateFormatter.string(from: picker.date)
+
+        }
+    }
     @objc func dismissPopViewDelegate(){
-        delegate?.dismissPopView()
+        delegate?.dismissPopView(s : "?")
     }
     let weekLabel : UILabel = {
         let label = UILabel()
@@ -155,7 +170,7 @@ class popupView_View : UIView {
     }()
     let startTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "10:00 PM"
+        label.text = " "
         label.textColor = Defaull_style.mainTitleColor
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -186,7 +201,7 @@ class popupView_View : UIView {
     }()
     let endTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "10:00 PM"
+        label.text = " "
         label.textColor = Defaull_style.mainTitleColor
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -201,33 +216,43 @@ class popupView_View : UIView {
 //        stack.spacing = 2
         return stack
     }()
+    let changeAndCancleStack : UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        return stack
+    }()
 
     let enter_Btn : UIButton = {
         let button = UIButton()
         //        button.addTarget(self, action: #selector(joinBtnEvent), for: .touchDown)
-        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+//        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = Defaull_style.themeColor
-        button.setTitle("확인", for: .normal)
+        button.setTitle("취소", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     let first_to_next_Btn : UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(first_to_next_action), for: .touchDown)
-        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+//        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = Defaull_style.themeColor
         button.setTitle("다음", for: .normal)
+        button.setTitle("시간을 선택해주세요", for: .disabled)
+        button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     let before_Btn : UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(back_action), for: .touchDown)
-        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
+//        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = Defaull_style.themeColor
@@ -246,8 +271,11 @@ class popupView_View : UIView {
             startBtn.setTitleColor(Defaull_style.mainTitleColor, for: .normal)
             endBtn.setTitleColor(Defaull_style.themeColor, for: .normal)
             startStackBoolUseBtn = false
+            first_to_next_Btn.isEnabled = false
+            
         }else{
-            delegate?.dismissPopView()
+            let sendData = startSaveTime + " ~ " + endSaveTime
+            delegate?.dismissPopView(s:sendData)
         }
     }
     @objc func back_action(){

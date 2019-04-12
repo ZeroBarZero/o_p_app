@@ -15,7 +15,8 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
         
         //Assign self for delegate for that ViewController can respond to UITabBarControllerDelegate methods
         self.delegate = self
-        
+        self.navigationItem.hidesBackButton = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

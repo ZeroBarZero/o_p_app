@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BuildServerSettings">
+    <option name="LOGIN" value="" />
+    <option name="SERVER_URL" value="http://buildserver" />
+    <option name="REMEMBER_ME" value="true" />
+    <option name="USE_IDEA_PROXY_SETTINGS" value="true" />
+    <option name="INSPECTIONS_BUILD_TYPE_IDS" />
+    <option name="DUPLICATES_BUILD_TYPE_IDS" />
+    <option name="COVERAGE_SETTINGS" />
+    <option name="TEST_STATUS_ENABLED" value="true" />
+    <option name="TEST_STATUS_SHOW_SUCCESSFUL" value="false" />
+    <option name="POSTPONE_SUITABLE_CONFIGURATIONS_SEARCH" value="false" />
+    <option name="ARTIFACTS_BUILD_TYPE_IDS" />
+    <option name="PERFORM_COMMIT_IF_SUCCESSFUL" value="true" />
+    <option name="PERFORM_COMMIT_IF_NO_NEW_FAILED_TESTS" value="false" />
+    <option name="REQUEST_CONFIRMATON" value="false" />
+    <option name="PRE_TESTED_COMMIT" value="true" />
+    <option name="FILTER_BY_STATUS" value="false" />
+    <option name="FILTER_MARKED_AS_FIXED" value="false" />
+    <option name="SHOW_CLOSE_PROMPT" value="true" />
+    <option name="TOOL_WINDOW_SELECTED_CONTENT_INDEX" value="0" />
+    <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1bcc0927-725e-4566-b6da-63e7ff4925a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/o_p_app.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_heart.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_heart.imageset/icon_5656_heart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_heart.imageset/icon_5656_heart@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_heart.imageset/icon_5656_heart@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_message.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_message.imageset/icon_5656_message.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_message.imageset/icon_5656_message@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/Assets.xcassets/icon/icon_5656_message.imageset/icon_5656_message@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/add_Study/add_Study_V.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/add_Study/add_Study_VC.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/o_p_app/add_Study/add_Study_VM.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app.xcodeproj/xcuserdata/oopsla.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app.xcodeproj/xcuserdata/oopsla.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/My_Study_View/mtStudy_V.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/My_Study_View/mtStudy_V.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/My_Study_View/myStudy_VC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/My_Study_View/myStudy_VC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/Search_View/search_V.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/Search_View/search_V.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/Search_View/search_VC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/Search_View/search_VC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/Study_messeger.View/studyMesseger_V.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/Study_messeger.View/studyMesseger_V.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/Study_messeger.View/studyMesseger_VC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/Study_messeger.View/studyMesseger_VC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/ViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/custom_style.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/custom_style.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/my_info/myInfo_VC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/my_info/myInfo_VC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/my_info/myinfo_V.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/my_info/myinfo_V.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/study_detail/studyDetail_V.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/study_detail/studyDetail_V.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/o_p_app/study_detail/studyDetail_VC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/o_p_app/study_detail/studyDetail_VC.swift" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_00008020-001D1C5601D2002E" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/o_p_app/add_Study/add_Study_V.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="218" column="31" selection-start-line="218" selection-start-column="31" selection-end-line="218" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/o_p_app/Search_View/search_V.swift" />
+        <option value="$PROJECT_DIR$/o_p_app/ViewController.swift" />
+        <option value="$PROJECT_DIR$/o_p_app/add_Study/add_Study_V.swift" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="140" />
+    <option name="y" value="43" />
+    <option name="width" value="1400" />
+    <option name="height" value="987" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="o_p_app" type="1d218c8b:XcodeProjectNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="o_p_app" type="1d218c8b:XcodeProjectNode" />
+              <item name="o_p_app" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="o_p_app" type="1d218c8b:XcodeProjectNode" />
+              <item name="o_p_app" type="fcab9f18:XcodeViewNode" />
+              <item name="add_Study" type="fcab9f18:XcodeViewNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Cidr.FilesView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bcc0927-725e-4566-b6da-63e7ff4925a4" name="Default Changelist" comment="" />
+      <created>1553865762645</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553865762645</updated>
+      <workItem from="1553865769596" duration="1004000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1004000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="140" y="43" width="1400" height="987" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Designer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496318" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" weight="0.32960895" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="TeamCity" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32960895" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="LuaJ" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Learn" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/o_p_app/Search_View/search_V.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="149" column="8" lean-forward="true" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/o_p_app/ViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/o_p_app/add_Study/add_Study_VC.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#131#148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/o_p_app/add_Study/add_Study_VM.swift">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/o_p_app/add_Study/add_Study_V.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="218" column="31" selection-start-line="218" selection-start-column="31" selection-end-line="218" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

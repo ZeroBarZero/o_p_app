@@ -44,23 +44,25 @@ class search_V : UIView {
 //            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
             
             recommendationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            recommendationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            recommendationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            recommendationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            recommendationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
             recommendationCollectView.topAnchor.constraint(equalTo: recommendationLabel.bottomAnchor, constant: 10),
-            recommendationCollectView.widthAnchor.constraint(equalTo: widthAnchor),
+            recommendationCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            recommendationCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             recommendationCollectView.heightAnchor.constraint(equalToConstant: 200),
             
             categoryRecomenLabel.topAnchor.constraint(equalTo: recommendationCollectView.bottomAnchor, constant: 10),
-            categoryRecomenLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            categoryRecomenLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            categoryRecomenLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            categoryRecomenLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
             categoryRecomenBtn.centerYAnchor.constraint(equalTo: categoryRecomenLabel.centerYAnchor),
-            categoryRecomenBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            categoryRecomenBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             categoryRecomenBtn.leadingAnchor.constraint(lessThanOrEqualTo: categoryRecomenLabel.trailingAnchor, constant: 0),
-            
+
             categoryRecomendCollectView.topAnchor.constraint(equalTo: categoryRecomenLabel.bottomAnchor, constant: 10),
-            categoryRecomendCollectView.widthAnchor.constraint(equalTo: widthAnchor),
+            categoryRecomendCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            categoryRecomendCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 200),
             ])
         

@@ -1,0 +1,11 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AnimatedTextInput" "${PODS_CONFIGURATION_BUILD_DIR}/FlexibleSteppedProgressBar" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManagerSwift" "${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar" "${PODS_CONFIGURATION_BUILD_DIR}/MessageKit" "${PODS_CONFIGURATION_BUILD_DIR}/MessengerKit" "${PODS_CONFIGURATION_BUILD_DIR}/RxAtomic" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift" "${PODS_CONFIGURATION_BUILD_DIR}/TagListView" "${PODS_CONFIGURATION_BUILD_DIR}/TextFieldEffects"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/AnimatedTextInput/AnimatedTextInput.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/FlexibleSteppedProgressBar/FlexibleSteppedProgressBar.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MessageInputBar/MessageInputBar.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MessageKit/MessageKit.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MessengerKit/MessengerKit.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/RxAtomic/RxAtomic.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/TagListView/TagListView.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/TextFieldEffects/TextFieldEffects.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "AnimatedTextInput" -framework "FlexibleSteppedProgressBar" -framework "IQKeyboardManagerSwift" -framework "MessageInputBar" -framework "MessageKit" -framework "MessengerKit" -framework "RxAtomic" -framework "RxCocoa" -framework "RxSwift" -framework "TagListView" -framework "TextFieldEffects"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

@@ -1,0 +1,65 @@
+PODS:
+  - AnimatedTextInput (0.5.5)
+  - FlexibleSteppedProgressBar (0.6.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
+  - MessengerKit (1.0.4)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - TagListView (1.3.2)
+  - TextFieldEffects (1.5.1)
+
+DEPENDENCIES:
+  - AnimatedTextInput
+  - FlexibleSteppedProgressBar
+  - IQKeyboardManagerSwift
+  - MessageKit
+  - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
+  - RxCocoa
+  - RxSwift
+  - TagListView (~> 1.0)
+  - TextFieldEffects
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AnimatedTextInput
+    - FlexibleSteppedProgressBar
+    - IQKeyboardManagerSwift
+    - MessageInputBar
+    - MessageKit
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - TagListView
+    - TextFieldEffects
+
+EXTERNAL SOURCES:
+  MessengerKit:
+    :git: https://github.com/steve228uk/MessengerKit.git
+
+CHECKOUT OPTIONS:
+  MessengerKit:
+    :commit: 3c6fda020cba538aeeca90bf12a4816147011655
+    :git: https://github.com/steve228uk/MessengerKit.git
+
+SPEC CHECKSUMS:
+  AnimatedTextInput: aadbdfa5a538a03cc9fbea700b43d2bb21a5d132
+  FlexibleSteppedProgressBar: 523e41e98f131e937f680b228b8c24e23f9751a8
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
+  MessengerKit: 39abeb652e7837b2ced80c4813b20368a994571d
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
+  TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
+
+PODFILE CHECKSUM: 2d2f79c6ad252cf230213cf548e97ee34bb1688e
+
+COCOAPODS: 1.5.3

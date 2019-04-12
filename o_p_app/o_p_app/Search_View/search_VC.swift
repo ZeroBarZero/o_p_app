@@ -27,12 +27,8 @@ class search_VC: UIViewController,search_VC_delegate {
         super.viewWillDisappear(animated)
 
     }
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-    }
     func initView(){
-        navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.visibleViewController?.title = "탐색하기"
@@ -60,16 +56,16 @@ class search_VC: UIViewController,search_VC_delegate {
         scrollView.addSubview(mainView)
         
         // layout
-        let margins = view.layoutMarginsGuide
+//        let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
             
             mainView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
-            mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
-            mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             // FIXIT : 오토 height 으로 바꾸기.
             mainView.heightAnchor.constraint(equalToConstant: 1000),
             
@@ -94,14 +90,21 @@ class search_VC: UIViewController,search_VC_delegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        initView()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBtnEvent))
-        
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+        DispatchQueue.main.async {
+            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
+            
+            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+
+        }
+
+        initView()
 
     }
 }
