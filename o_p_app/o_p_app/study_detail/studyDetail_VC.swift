@@ -57,8 +57,8 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
 
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-            mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0),
-            mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0),
+            mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
+            mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20),
 //            mainView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0)
             ])
         // bottomView 확인

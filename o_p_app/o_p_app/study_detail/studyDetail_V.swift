@@ -97,15 +97,21 @@ class studyDetail_V : UIView {
         
         self.addSubview(titleLabel)
         self.addSubview(descriptionLabel)
-        self.addSubview(detailLocationLabel)
+
+        stack.addArrangedSubview(detailLocationLabel)
+        stack.addArrangedSubview(memberLabel)
+        stack.addArrangedSubview(weekLabel)
+        
+        self.addSubview(stack)
         self.addSubview(lineView)
         self.addSubview(descriptionLabel_1)
         self.addSubview(weekInfoTable)
-        let eachPadding = CGFloat(10)
-        
+        let eachPadding = CGFloat(20)
+        let leadingPadding = CGFloat(20)
+
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachPadding),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
@@ -113,9 +119,9 @@ class studyDetail_V : UIView {
             descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
-            detailLocationLabel.topAnchor.constraint(equalTo: self.descriptionLabel.bottomAnchor, constant: eachPadding),
-            detailLocationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            detailLocationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            stack.topAnchor.constraint(equalTo: self.descriptionLabel.bottomAnchor, constant: eachPadding),
+            stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
             
             lineView.topAnchor.constraint(equalTo: detailLocationLabel.bottomAnchor, constant: 20),
@@ -153,11 +159,35 @@ class studyDetail_V : UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+    let stack : UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.spacing = 2
+        return stack
+    }()
     let detailLocationLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.text = "온라인 스터디"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let memberLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.text = "30명"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let weekLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.text = "주 1회"
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
