@@ -118,7 +118,7 @@ class login_VC : UIViewController {
         }).resume()
         
     }
-    
+    // 키보드 올라오거나 내려갈 때 뷰 이동시키는 함수
     fileprivate func handleKeyboardIssue(notification: Notification, isAppearing: Bool) {
         // 1. 키보드 높이 구함
         guard let userInfo = notification.userInfo as? [String:Any] else {return}

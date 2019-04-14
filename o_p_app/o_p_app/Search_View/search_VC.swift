@@ -77,7 +77,7 @@ class search_VC: UIViewController,search_VC_delegate {
     @objc func addBtnEvent(){
         DispatchQueue.main.async
             {
-                self.navigationController?.pushViewController(add_Study_VC(), animated: true)
+                self.navigationController?.pushViewController(add_study2_VC(), animated: true)
         }
     }
     let scrollView: UIScrollView = {

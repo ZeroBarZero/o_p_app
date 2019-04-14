@@ -15,11 +15,11 @@ protocol dismissPopView {
     func dismissPopView(s:String)
 }
 class add_Study_table_cell_popupView : UIViewController, dismissPopView {
-    var delegate : popupView_delegate?
+    var delegate : add_study2_VC_Delegate?
     
     func dismissPopView(s:String) {
         if s != "?"{
-            delegate?.passingWeekValue(s: s)
+            delegate?.step2_timepassing(s: s)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -105,15 +105,6 @@ class popupView_View : UIView {
             changeAndCancleStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             changeAndCancleStack.heightAnchor.constraint(equalToConstant: 80),
             changeAndCancleStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-//            btnStack.heightAnchor.constraint(equalToConstant: 50),
-//            btnStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
-//            btnStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-//            btnStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-////            btnStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-//            enter_Btn.topAnchor.constraint(equalTo: btnStack.bottomAnchor, constant: 0),
-//            enter_Btn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-//            enter_Btn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-//            enter_Btn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             ])
         // 삭제할거임..아니면 취소버튼으로 만둘기~~
         enter_Btn.addTarget(self, action: #selector(dismissPopViewDelegate), for: .touchDown)

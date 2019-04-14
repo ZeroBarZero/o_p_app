@@ -10,6 +10,8 @@
 		3A85CF3415E39D4FE15CDF34 /* Pods_o_p_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B089DB718B13DD7A426E9D5A /* Pods_o_p_app.framework */; };
 		4A6264A92260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6264A82260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift */; };
 		4A714A35224E7781004D3156 /* add_Study_V_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A714A34224E7781004D3156 /* add_Study_V_2.swift */; };
+		4A849FFF2262DBE500FF06DA /* add_study2_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */; };
+		4A84A00122633C6200FF06DA /* add_study2_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A84A00022633C6200FF06DA /* add_study2_V.swift */; };
 		4A96D58622508B5100517919 /* login_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96D58522508B5100517919 /* login_V.swift */; };
 		4A96D58922508B6B00517919 /* login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96D58822508B6B00517919 /* login_VC.swift */; };
 		4ABF96DD223E105A006FFD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF96DC223E105A006FFD40 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 /* Begin PBXFileReference section */
 		4A6264A82260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_selectPeople_popVIew.swift; sourceTree = "<group>"; };
 		4A714A34224E7781004D3156 /* add_Study_V_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_V_2.swift; sourceTree = "<group>"; };
+		4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_study2_VC.swift; sourceTree = "<group>"; };
+		4A84A00022633C6200FF06DA /* add_study2_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_study2_V.swift; sourceTree = "<group>"; };
 		4A96D58522508B5100517919 /* login_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = login_V.swift; sourceTree = "<group>"; };
 		4A96D58822508B6B00517919 /* login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = login_VC.swift; sourceTree = "<group>"; };
 		4ABF96D9223E105A006FFD40 /* o_p_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = o_p_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,11 +110,21 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		4A849FFD2262DBBC00FF06DA /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */,
+				4A84A00022633C6200FF06DA /* add_study2_V.swift */,
+			);
+			name = "New Group";
+			path = "login/New Group";
+			sourceTree = "<group>";
+		};
 		4A96D58722508B5800517919 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				4A96D58522508B5100517919 /* login_V.swift */,
 				4A96D58822508B6B00517919 /* login_VC.swift */,
+				4A96D58522508B5100517919 /* login_V.swift */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -136,6 +150,7 @@
 		4ABF96DB223E105A006FFD40 /* o_p_app */ = {
 			isa = PBXGroup;
 			children = (
+				4A849FFD2262DBBC00FF06DA /* New Group */,
 				4A96D58722508B5800517919 /* login */,
 				4ABF97132247391A006FFD40 /* add_Study */,
 				4ABF970C22428BED006FFD40 /* study_detail */,
@@ -378,6 +393,7 @@
 				4ABF971522473934006FFD40 /* add_Study_VC.swift in Sources */,
 				4A96D58922508B6B00517919 /* login_VC.swift in Sources */,
 				4ABF971922473944006FFD40 /* add_Study_VM.swift in Sources */,
+				4A849FFF2262DBE500FF06DA /* add_study2_VC.swift in Sources */,
 				4ABF971022428C19006FFD40 /* studyDetail_V.swift in Sources */,
 				4ABF96F6223E136F006FFD40 /* studyMesseger_VC.swift in Sources */,
 				4ABF96FC223E1BE2006FFD40 /* search_V.swift in Sources */,
@@ -388,6 +404,7 @@
 				4ABF96EF223E1174006FFD40 /* custom_style.swift in Sources */,
 				4ABF971222428C30006FFD40 /* studyDetail_VM.swift in Sources */,
 				4A714A35224E7781004D3156 /* add_Study_V_2.swift in Sources */,
+				4A84A00122633C6200FF06DA /* add_study2_V.swift in Sources */,
 				4ABF9703223E85DC006FFD40 /* mySearch_VM.swift in Sources */,
 				4ABF9705223E8DD5006FFD40 /* studyMesseger_VM.swift in Sources */,
 			);

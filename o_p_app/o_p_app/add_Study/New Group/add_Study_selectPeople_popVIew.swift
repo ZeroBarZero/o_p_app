@@ -11,7 +11,7 @@ import UIKit
 
 class add_Study_selectPeople_popVIew : UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var delegate : popupView_delegate?
+    var delegate : add_study2_VC_Delegate?
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -70,7 +70,7 @@ class add_Study_selectPeople_popVIew : UIViewController, UIPickerViewDataSource,
         enter_Btn.addTarget(nil, action: #selector(enterBtnEvent), for: .touchDown)
     }
     @objc func enterBtnEvent(){
-        delegate?.passingMemberValue(s: selectMemberLabel.text!)
+        delegate?.step2_memberSelectView_passingMemberValue(s: selectMemberLabel.text!)
         dismiss(animated: true, completion: nil)
     }
     let mainView : UIView = {

@@ -21,7 +21,7 @@ class add_Study_VC : UIViewController , popupView_delegate{
     
     func presentWeekPopupView(index:Int) {
         let vc = add_Study_table_cell_popupView()
-        vc.delegate = self
+//        vc.delegate = self
         currentIndex = index
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
@@ -29,7 +29,7 @@ class add_Study_VC : UIViewController , popupView_delegate{
     }
     func presentmemberPopView(){
         let vc = add_Study_selectPeople_popVIew()
-        vc.delegate = self
+//        vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
@@ -54,8 +54,8 @@ class add_Study_VC : UIViewController , popupView_delegate{
         self.view.addSubview(scrollView)
         scrollView.addSubview(mainView)
         
-        mainView.delegate = self
-        mainView.week_selectView.delegate = self
+//        mainView.delegate = self
+//        mainView.week_selectView.delegate = self
         
         let margins = view.layoutMarginsGuide
 

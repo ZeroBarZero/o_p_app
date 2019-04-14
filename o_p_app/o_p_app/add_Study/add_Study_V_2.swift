@@ -15,7 +15,7 @@ import IQKeyboardManagerSwift
 
 class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInputDelegate {
     
-    var delegate : popupView_delegate?
+    var delegate : add_study2_VC_Delegate?
     
     func animatedTextInputDidEndEditing(animatedTextInput: AnimatedTextInput) {
         if studyInfoTextInput.text != "" && studyTitleTextInput.text != "" {
@@ -30,7 +30,7 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
     var progressBarWithoutLastState: FlexibleSteppedProgressBar!
 
     // 선택 동그라미 색
-    var backgroundColor1 = #colorLiteral(red: 0.09955967218, green: 0.5711624026, blue: 0.4547557235, alpha: 1)
+    var backgroundColor1 = #colorLiteral(red: 1, green: 0.3768762648, blue: 0.6086360216, alpha: 1)
     // 동그라미 색
     var progressColor = Defaull_style.themeColor
     // 위아래 설명 색
@@ -72,6 +72,11 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
         // 디테일 작성
         self.addSubview(descriptionLabel_2)
         self.addSubview(week_selection)
+        // 장소 선택
+        location_View.addArrangedSubview(onlineBtn)
+        location_View.addArrangedSubview(offlineBtn)
+        self.addSubview(location_View)
+
         week_selection.tapAction = {
             // height 변경하는 코드 텍스트 아래에 뷰 보이게 함
             if self.week_selectView.isHidden {
@@ -98,7 +103,7 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
         self.addSubview(member_selection)
         member_selection.tapAction = {
             print("tap")
-            self.delegate?.presentmemberPopView()
+            self.delegate?.step2_memberSelectView()
         }
         self.addSubview(location_selection)
         location_selection.tapAction = {
@@ -122,7 +127,6 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
             }
 
         }
-        self.addSubview(location_View)
 
         _ = Int(self.frame.height/8)
         
@@ -171,8 +175,8 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
             location_selection.trailingAnchor.constraint(equalTo: progressBarWithoutLastState.trailingAnchor, constant: 0),
 //            location_selection.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
             location_View.topAnchor.constraint(equalTo: location_selection.bottomAnchor, constant: 0),
-            location_View.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            location_View.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            location_View.leadingAnchor.constraint(equalTo: progressBarWithoutLastState.leadingAnchor, constant: 0),
+            location_View.trailingAnchor.constraint(equalTo: progressBarWithoutLastState.trailingAnchor, constant: 0),
             location_View.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
             ])
@@ -280,13 +284,34 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
         return select
     }()
     
-    let location_View : UIView = {
-        let view = UIView()
+    let location_View : UIStackView = {
+        let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
+        view.alignment = .center
+        view.axis = .horizontal
+        view.distribution = .fillEqually
         return view
     }()
-    
+    let onlineBtn : UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = Defaull_style.themeColor
+        btn.setTitle("온라인", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        return btn
+    }()
+    let offlineBtn : UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = Defaull_style.themeColor
+        btn.setTitle("오프라인", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+
+        return btn
+    }()
     let bottomView : studyDetail_Bottom_V = {
         let view = studyDetail_Bottom_V()
         view.leftString = "스터디 생성 준비 완료"
@@ -349,12 +374,20 @@ class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
     var weekData = Array(repeating: "시간을 추가하세요.", count: 7)
 //    var selectIndex : Int?
     
+    var delegate : add_study2_VC_Delegate?
 
-    var delegate : popupView_delegate?
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectIndex = indexPath.row
-        delegate?.presentWeekPopupView(index : selectIndex)
+        DispatchQueue.main.async {
+            let selectIndex = indexPath.row
+            print(selectIndex)
+            self.delegate?.step2_timeSelectView(index : selectIndex)
+
+        }
+//        let selectIndex = indexPath.row
+//        print(selectIndex)
+//        delegate?.step2_timeSelectView(index : selectIndex)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekStr.count
@@ -450,10 +483,10 @@ class weekView_TV_Cell : UITableViewCell {
 
 struct CustomTextInputStyle: AnimatedTextInputStyle {
     let placeholderInactiveColor = Defaull_style.themeColor
-    let activeColor = Defaull_style.themeColor
-    let inactiveColor = UIColor.gray.withAlphaComponent(0.3)
-    let lineInactiveColor = UIColor.gray.withAlphaComponent(0.3)
-    let lineActiveColor = Defaull_style.themeColor
+    let activeColor = #colorLiteral(red: 1, green: 0.3768762648, blue: 0.6086360216, alpha: 1)
+    let inactiveColor = #colorLiteral(red: 1, green: 0.3768762648, blue: 0.6086360216, alpha: 1)
+    let lineInactiveColor = Defaull_style.themeColor
+    let lineActiveColor = #colorLiteral(red: 1, green: 0.3768762648, blue: 0.6086360216, alpha: 1)
     // 아래 라인 높이
     let lineHeight: CGFloat = 1
     let errorColor = UIColor.red
