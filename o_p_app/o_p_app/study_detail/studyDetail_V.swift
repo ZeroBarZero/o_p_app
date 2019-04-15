@@ -127,7 +127,7 @@ class studyDetail_V : UIView {
             lineView.topAnchor.constraint(equalTo: detailLocationLabel.bottomAnchor, constant: 20),
             lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            lineView.heightAnchor.constraint(equalToConstant: 0.8),
+            lineView.heightAnchor.constraint(equalToConstant: 1),
             
             descriptionLabel_1.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 20),
             descriptionLabel_1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),

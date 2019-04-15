@@ -23,10 +23,24 @@ class search_VC: UIViewController,search_VC_delegate {
     }
     var search_Collection : recommendationCollectionView?
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
+        
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+        
+        
+        
+        initView()
+        
+    }
+
     func initView(){
 //        navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -47,29 +61,15 @@ class search_VC: UIViewController,search_VC_delegate {
         
         
         view.backgroundColor = .white
-        let mainView = search_V()
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        // delegate 위해
+
         mainView.recommendationCollectView.delegate = self
         
-        view.addSubview(scrollView)
-        scrollView.addSubview(mainView)
-        
-        // layout
-//        let margins = view.layoutMarginsGuide
+        view.addSubview(mainView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
-            
-            mainView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
+            mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            // FIXIT : 오토 height 으로 바꾸기.
-            mainView.heightAnchor.constraint(equalToConstant: 1000),
-            
-            mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0)
+            mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
             ])
         
 
@@ -80,32 +80,13 @@ class search_VC: UIViewController,search_VC_delegate {
                 self.navigationController?.pushViewController(add_study2_VC(), animated: true)
         }
     }
-    let scrollView: UIScrollView = {
-        let v = UIScrollView()
+    let mainView: search_V = {
+        let v = search_V()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = .cyan
+//        v.delaysContentTouches = false
         return v
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        
-
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
-            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
-            
-            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
-
-        }
-
-        initView()
-
-    }
 }
 

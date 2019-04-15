@@ -36,10 +36,14 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
     // step2 time table index
     var currentIndex : Int?
 
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initView()
+    }
     // TODO : 버튼 재사용 하는거로 바꾸기..
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         hideKeyboardWhenTappedAround()
         
         self.view.backgroundColor = .white
@@ -50,8 +54,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
         step2.delegate = self
         step3.delegate = self
         step2.week_selectView.delegate = self
-        initView()
-        
+
         Observable.combineLatest(
             // id, pw  둘 다 바뀌면
             step1.studyTitleTextInput.rx.text.orEmpty.map(check),
@@ -101,6 +104,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
     
     func step2_Next() {
         view.endEditing(true)
+        step1.isHidden = true
         showAnimateNextView(currentView:step2,willView:step3)
     }
     
@@ -123,18 +127,23 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
     func showAnimateNextView(currentView:UIView,willView:UIView){
         willView.transform = CGAffineTransform.identity.translatedBy(x: self.view.bounds.width, y: 0)
         willView.isHidden = false
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1, animations: {
             willView.transform = CGAffineTransform(translationX: 0, y: 0)
             currentView.transform = CGAffineTransform(translationX: -(self.view.bounds.width), y: 0)
-        }
+        }, completion: { _ in
+            currentView.isHidden = true
+            // 뷰컨트롤 스와이프할 때 뷰 겹쳐보이는거 노노
+        })
     }
     func showAnimatePrevView(currentView:UIView,willView:UIView){
         willView.transform = CGAffineTransform.identity.translatedBy(x: -self.view.bounds.width, y: 0)
         willView.isHidden = false
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1, animations: {
             willView.transform = CGAffineTransform(translationX: 0, y: 0)
             currentView.transform = CGAffineTransform(translationX: (self.view.bounds.width), y: 0)
-        }
+        }, completion: { _ in
+            currentView.isHidden = true
+        })
     }
 
     func show_step3() {

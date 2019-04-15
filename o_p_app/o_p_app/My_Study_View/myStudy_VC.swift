@@ -53,7 +53,7 @@ class myStudy_VC : UIViewController,myStudy_VC_delegate {
             mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
             ])
 
-        
+        mainView.tableView.tableView.layoutSubviews()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

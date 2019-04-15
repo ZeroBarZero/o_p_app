@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A85CF3415E39D4FE15CDF34 /* Pods_o_p_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B089DB718B13DD7A426E9D5A /* Pods_o_p_app.framework */; };
+		4A17DA5D2264D75700CDC850 /* add_Study_table_cell_popupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17DA5C2264D75600CDC850 /* add_Study_table_cell_popupView.swift */; };
 		4A6264A92260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6264A82260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift */; };
 		4A714A35224E7781004D3156 /* add_Study_V_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A714A34224E7781004D3156 /* add_Study_V_2.swift */; };
 		4A849FFF2262DBE500FF06DA /* add_study2_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */; };
@@ -38,10 +39,10 @@
 		4ABF971522473934006FFD40 /* add_Study_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF971422473934006FFD40 /* add_Study_VC.swift */; };
 		4ABF97172247393D006FFD40 /* add_Study_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF97162247393D006FFD40 /* add_Study_V.swift */; };
 		4ABF971922473944006FFD40 /* add_Study_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF971822473944006FFD40 /* add_Study_VM.swift */; };
-		4AC6E5022252210C006E17C1 /* add_Study_table_cell_popupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC6E5012252210C006E17C1 /* add_Study_table_cell_popupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A17DA5C2264D75600CDC850 /* add_Study_table_cell_popupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = add_Study_table_cell_popupView.swift; sourceTree = "<group>"; };
 		4A6264A82260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_selectPeople_popVIew.swift; sourceTree = "<group>"; };
 		4A714A34224E7781004D3156 /* add_Study_V_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_V_2.swift; sourceTree = "<group>"; };
 		4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_study2_VC.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		4ABF971422473934006FFD40 /* add_Study_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_VC.swift; sourceTree = "<group>"; };
 		4ABF97162247393D006FFD40 /* add_Study_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_V.swift; sourceTree = "<group>"; };
 		4ABF971822473944006FFD40 /* add_Study_VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_Study_VM.swift; sourceTree = "<group>"; };
-		4AC6E5012252210C006E17C1 /* add_Study_table_cell_popupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = add_Study_table_cell_popupView.swift; path = ../add_Study_table_cell_popupView.swift; sourceTree = "<group>"; };
 		7791C2CACA7A829AE450E88F /* Pods-o_p_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.release.xcconfig"; sourceTree = "<group>"; };
 		B089DB718B13DD7A426E9D5A /* Pods_o_p_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_o_p_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F21E7259D04A715E8DD0EE /* Pods-o_p_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,23 +101,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		4A6264A72260ABB2009CDFFF /* New Group */ = {
+		4A17DA5B2264D6D900CDC850 /* Add_Study_v3 */ = {
 			isa = PBXGroup;
 			children = (
-				4AC6E5012252210C006E17C1 /* add_Study_table_cell_popupView.swift */,
+				4A17DA5C2264D75600CDC850 /* add_Study_table_cell_popupView.swift */,
 				4A6264A82260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift */,
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		4A849FFD2262DBBC00FF06DA /* add_study_v2 */ = {
-			isa = PBXGroup;
-			children = (
 				4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */,
 				4A84A00022633C6200FF06DA /* add_study2_V.swift */,
 			);
-			name = add_study_v2;
-			path = login/add_study_v2;
+			path = Add_Study_v3;
+			sourceTree = "<group>";
+		};
+		4A6264A72260ABB2009CDFFF /* trash */ = {
+			isa = PBXGroup;
+			children = (
+				4ABF97132247391A006FFD40 /* add_Study */,
+			);
+			path = trash;
 			sourceTree = "<group>";
 		};
 		4A96D58722508B5800517919 /* login */ = {
@@ -150,9 +150,8 @@
 		4ABF96DB223E105A006FFD40 /* o_p_app */ = {
 			isa = PBXGroup;
 			children = (
-				4A849FFD2262DBBC00FF06DA /* add_study_v2 */,
+				4A17DA5B2264D6D900CDC850 /* Add_Study_v3 */,
 				4A96D58722508B5800517919 /* login */,
-				4ABF97132247391A006FFD40 /* add_Study */,
 				4ABF970C22428BED006FFD40 /* study_detail */,
 				4ABF96FD223E846E006FFD40 /* my_info */,
 				4ABF96F2223E1296006FFD40 /* Study_messeger_View */,
@@ -165,6 +164,7 @@
 				4ABF96E5223E105B006FFD40 /* LaunchScreen.storyboard */,
 				4ABF96E8223E105B006FFD40 /* Info.plist */,
 				4ABF96EE223E1174006FFD40 /* custom_style.swift */,
+				4A6264A72260ABB2009CDFFF /* trash */,
 			);
 			path = o_p_app;
 			sourceTree = "<group>";
@@ -223,7 +223,6 @@
 		4ABF97132247391A006FFD40 /* add_Study */ = {
 			isa = PBXGroup;
 			children = (
-				4A6264A72260ABB2009CDFFF /* New Group */,
 				4ABF971422473934006FFD40 /* add_Study_VC.swift */,
 				4ABF97162247393D006FFD40 /* add_Study_V.swift */,
 				4ABF971822473944006FFD40 /* add_Study_VM.swift */,
@@ -389,12 +388,12 @@
 				4ABF96FF223E8487006FFD40 /* myInfo_VC.swift in Sources */,
 				4ABF96FA223E1B44006FFD40 /* search_VM.swift in Sources */,
 				4A6264A92260ABD9009CDFFF /* add_Study_selectPeople_popVIew.swift in Sources */,
-				4AC6E5022252210C006E17C1 /* add_Study_table_cell_popupView.swift in Sources */,
 				4ABF971522473934006FFD40 /* add_Study_VC.swift in Sources */,
 				4A96D58922508B6B00517919 /* login_VC.swift in Sources */,
 				4ABF971922473944006FFD40 /* add_Study_VM.swift in Sources */,
 				4A849FFF2262DBE500FF06DA /* add_study2_VC.swift in Sources */,
 				4ABF971022428C19006FFD40 /* studyDetail_V.swift in Sources */,
+				4A17DA5D2264D75700CDC850 /* add_Study_table_cell_popupView.swift in Sources */,
 				4ABF96F6223E136F006FFD40 /* studyMesseger_VC.swift in Sources */,
 				4ABF96FC223E1BE2006FFD40 /* search_V.swift in Sources */,
 				4ABF9707223E8DE7006FFD40 /* studyMesseger_V.swift in Sources */,

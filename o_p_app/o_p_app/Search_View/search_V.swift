@@ -13,44 +13,41 @@ import TagListView
 class search_V : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initView()
     }
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundColor = .white
-
+        initView()
         
     }
     func initView(){
         // addsubview
-//        self.addSubview(titleLabel)
-        self.addSubview(recommendationLabel)
-        self.addSubview(recommendationCollectView)
-        self.addSubview(categoryRecomenLabel)
-        self.addSubview(categoryRecomenBtn)
-        self.addSubview(categoryRecomendCollectView)
+        self.addSubview(scrollView)
+        scrollView.addSubview(recommendationLabel)
+        scrollView.addSubview(recommendationCollectView)
+        scrollView.addSubview(categoryRecomenLabel)
+        scrollView.addSubview(categoryRecomenBtn)
+        scrollView.addSubview(categoryRecomendCollectView)
         
         
         // constraint
         NSLayoutConstraint.activate([
-//            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-//            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-//            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-//            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
+            scrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
             recommendationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             recommendationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             recommendationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
             recommendationCollectView.topAnchor.constraint(equalTo: recommendationLabel.bottomAnchor, constant: 10),
-            recommendationCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
-            recommendationCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
-            recommendationCollectView.heightAnchor.constraint(equalToConstant: 200),
+            recommendationCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            recommendationCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            recommendationCollectView.heightAnchor.constraint(equalToConstant: 150),
             
             categoryRecomenLabel.topAnchor.constraint(equalTo: recommendationCollectView.bottomAnchor, constant: 10),
             categoryRecomenLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
@@ -71,7 +68,12 @@ class search_V : UIView {
         recommendationLabel.text = testData.name + " 님을 위한 스터디입니다."
 
     }
-    
+    let scrollView : UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+
     let titleLabel : UILabel = {
         let label = UILabel()
         label.text = "탐색하기"
@@ -144,10 +146,14 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
         // Initialize UICollectionView without a layout
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: self.frame.width/2, height: self.frame.height)
+//        layout.itemSize = CGSize(width: self.frame.width/2, height: self.frame.height)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
 
         collectionview = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), collectionViewLayout: layout)
+//        collectionview.collectionViewLayout = layout
+        collectionview.contentInsetAdjustmentBehavior = .always
+
         collectionview.dataSource = self
         collectionview.delegate = self
         collectionview.register(recommendationCollectCell.self, forCellWithReuseIdentifier: cellId)
@@ -203,12 +209,12 @@ class recommendationCollectCell : UICollectionViewCell {
         
         addSubview(studyCateLabel)
         addSubview(studyNameLabel)
-        addSubview(detailOnlineOrOfflineLabel)
+//        addSubview(detailOnlineOrOfflineLabel)
         addSubview(detailLocationLabel)
         addSubview(detailWeekLabel)
         addSubview(detailMemberLabel)
         
-        let eachOtherPadding = CGFloat(3)
+        let eachOtherPadding = CGFloat(5)
         
         NSLayoutConstraint.activate([
             studyCateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachOtherPadding),
@@ -217,12 +223,12 @@ class recommendationCollectCell : UICollectionViewCell {
             studyNameLabel.topAnchor.constraint(equalTo: studyCateLabel.bottomAnchor, constant: eachOtherPadding),
             studyNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             studyNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-
-            detailOnlineOrOfflineLabel.topAnchor.constraint(equalTo: studyNameLabel.bottomAnchor, constant: eachOtherPadding),
-            detailOnlineOrOfflineLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            detailOnlineOrOfflineLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+//
+//            detailOnlineOrOfflineLabel.topAnchor.constraint(equalTo: studyNameLabel.bottomAnchor, constant: eachOtherPadding),
+//            detailOnlineOrOfflineLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+//            detailOnlineOrOfflineLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             
-            detailLocationLabel.topAnchor.constraint(equalTo: detailOnlineOrOfflineLabel.bottomAnchor, constant: eachOtherPadding),
+            detailLocationLabel.topAnchor.constraint(equalTo: studyNameLabel.bottomAnchor, constant: eachOtherPadding),
             detailLocationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             detailLocationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
 
@@ -233,7 +239,7 @@ class recommendationCollectCell : UICollectionViewCell {
             detailMemberLabel.topAnchor.constraint(equalTo: detailWeekLabel.bottomAnchor, constant: eachOtherPadding),
             detailMemberLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             detailMemberLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-
+            detailMemberLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -eachOtherPadding)
             ])
     }
     let studyCateLabel : UILabel = {
@@ -253,17 +259,17 @@ class recommendationCollectCell : UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let detailOnlineOrOfflineLabel : UILabel = {
-        let label = UILabel()
-        label.text = "온라인/오프라인 스터디"
-        label.textColor = Defaull_style.subTitleColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+//    let detailOnlineOrOfflineLabel : UILabel = {
+//        let label = UILabel()
+//        label.text = "온라인/오프라인 스터디"
+//        label.textColor = Defaull_style.subTitleColor
+//        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     let detailLocationLabel : UILabel = {
         let label = UILabel()
-        label.text = "노량진"
+        label.text = "노량진 오프라인 스터디"
         label.textColor = Defaull_style.subTitleColor
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false

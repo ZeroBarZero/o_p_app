@@ -28,5 +28,5 @@ struct Defaull_style {
     
     static var mainMargin = 20
     static var insideMargin = 10
-    static var defaultPadding = CGFloat(10)
+    static var defaultPadding = CGFloat(20)
 }
