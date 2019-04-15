@@ -50,7 +50,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
         step2.delegate = self
         step3.delegate = self
         step2.week_selectView.delegate = self
-        show_step1()
+        initView()
         
         Observable.combineLatest(
             // id, pw  둘 다 바뀌면
@@ -68,60 +68,75 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
             })
             .disposed(by: disposeBag)
     }
+    func initView(){
+        step2.isHidden = true
+        step3.isHidden = true
+        step1.isHidden = false
+        
+        view.addSubview(step1)
+        view.addSubview(step2)
+        view.addSubview(step3)
+        
+        NSLayoutConstraint.activate([
+            step1.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
+            step1.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            ])
+        NSLayoutConstraint.activate([
+            step2.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
+            step2.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            ])
+        NSLayoutConstraint.activate([
+            step3.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
+            step3.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            ])
+    }
     func check( _ s : String) -> Bool{
         return s.count > 0
     }
     
     func step1_Next() {
         view.endEditing(true)
-        show_step2()
+        showAnimateNextView(currentView: step1, willView: step2)
     }
     
     func step2_Next() {
         view.endEditing(true)
-        show_step3()
+        showAnimateNextView(currentView:step2,willView:step3)
     }
     
     func step2_Prev() {
         view.endEditing(true)
-        show_step1()
+        showAnimatePrevView(currentView: step2, willView: step1)
     }
     
     func step3_Next() {
+        step1.isHidden = true
+        step2.isHidden = true
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
     func step3_Prev() {
-        show_step2()
+        showAnimatePrevView(currentView: step3, willView: step2)
     }
 
-    func show_step1() {
-        step2.isHidden = true
-        step3.isHidden = true
-        step1.isHidden = false
-        
-        view.addSubview(step1)
-        
-        NSLayoutConstraint.activate([
-            step1.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            step1.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
-            ])
-
+    func showAnimateNextView(currentView:UIView,willView:UIView){
+        willView.transform = CGAffineTransform.identity.translatedBy(x: self.view.bounds.width, y: 0)
+        willView.isHidden = false
+        UIView.animate(withDuration: 1) {
+            willView.transform = CGAffineTransform(translationX: 0, y: 0)
+            currentView.transform = CGAffineTransform(translationX: -(self.view.bounds.width), y: 0)
+        }
     }
-    func show_step2() {
-        step1.isHidden = true
-        step3.isHidden = true
-        step2.isHidden = false
-
-        view.addSubview(step2)
-        
-        NSLayoutConstraint.activate([
-            step2.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            step2.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
-            ])
-
+    func showAnimatePrevView(currentView:UIView,willView:UIView){
+        willView.transform = CGAffineTransform.identity.translatedBy(x: -self.view.bounds.width, y: 0)
+        willView.isHidden = false
+        UIView.animate(withDuration: 1) {
+            willView.transform = CGAffineTransform(translationX: 0, y: 0)
+            currentView.transform = CGAffineTransform(translationX: (self.view.bounds.width), y: 0)
+        }
     }
+
     func show_step3() {
         step1.isHidden = true
         step2.isHidden = true
@@ -158,10 +173,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
         //        print(s)
         step2.week_selectView.weekData[currentIndex!] = s
         step2.week_selectView.tableView.reloadData()
-        
     }
-
-
     let step1 : add_study2_V_step1 = {
         let view = add_study2_V_step1()
         view.translatesAutoresizingMaskIntoConstraints = false

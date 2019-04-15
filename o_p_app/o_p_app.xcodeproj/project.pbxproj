@@ -110,14 +110,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
-		4A849FFD2262DBBC00FF06DA /* New Group */ = {
+		4A849FFD2262DBBC00FF06DA /* add_study_v2 */ = {
 			isa = PBXGroup;
 			children = (
 				4A849FFE2262DBE500FF06DA /* add_study2_VC.swift */,
 				4A84A00022633C6200FF06DA /* add_study2_V.swift */,
 			);
-			name = "New Group";
-			path = "login/New Group";
+			name = add_study_v2;
+			path = login/add_study_v2;
 			sourceTree = "<group>";
 		};
 		4A96D58722508B5800517919 /* login */ = {
@@ -150,7 +150,7 @@
 		4ABF96DB223E105A006FFD40 /* o_p_app */ = {
 			isa = PBXGroup;
 			children = (
-				4A849FFD2262DBBC00FF06DA /* New Group */,
+				4A849FFD2262DBBC00FF06DA /* add_study_v2 */,
 				4A96D58722508B5800517919 /* login */,
 				4ABF97132247391A006FFD40 /* add_Study */,
 				4ABF970C22428BED006FFD40 /* study_detail */,
