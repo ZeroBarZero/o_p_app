@@ -6,6 +6,7 @@ PODS:
   - MessageKit (2.0.0):
     - MessageInputBar/Core
   - MessengerKit (1.0.4)
+  - NMapsMap (3.1.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - MessageKit
   - MessengerKit (from `https://github.com/steve228uk/MessengerKit.git`)
+  - NMapsMap
   - RxCocoa
   - RxSwift
   - TagListView (~> 1.0)
@@ -32,6 +34,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - MessageInputBar
     - MessageKit
+    - NMapsMap
     - RxAtomic
     - RxCocoa
     - RxSwift
@@ -54,12 +57,13 @@ SPEC CHECKSUMS:
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   MessengerKit: 39abeb652e7837b2ced80c4813b20368a994571d
+  NMapsMap: 8a23071ddd7b35b29b2fd9e5672ef20c1cb95547
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 2d2f79c6ad252cf230213cf548e97ee34bb1688e
+PODFILE CHECKSUM: 6c276feebf7389aaecd8c9c38a9f7e3f8721d0c4
 
 COCOAPODS: 1.5.3

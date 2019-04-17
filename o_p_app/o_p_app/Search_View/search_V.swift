@@ -28,6 +28,8 @@ class search_V : UIView {
         self.addSubview(scrollView)
         scrollView.addSubview(recommendationLabel)
         scrollView.addSubview(recommendationCollectView)
+        scrollView.addSubview(recommendationUserLocateLabel)
+        scrollView.addSubview(recommendationUserLocateCollectView)
         scrollView.addSubview(categoryRecomenLabel)
         scrollView.addSubview(categoryRecomenBtn)
         scrollView.addSubview(categoryRecomendCollectView)
@@ -49,7 +51,18 @@ class search_V : UIView {
             recommendationCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             recommendationCollectView.heightAnchor.constraint(equalToConstant: 150),
             
-            categoryRecomenLabel.topAnchor.constraint(equalTo: recommendationCollectView.bottomAnchor, constant: 10),
+            recommendationUserLocateLabel.topAnchor.constraint(equalTo: recommendationCollectView.bottomAnchor, constant: 10),
+            recommendationUserLocateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            recommendationUserLocateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
+
+            
+            recommendationUserLocateCollectView.topAnchor.constraint(equalTo: recommendationUserLocateLabel.bottomAnchor, constant: 10),
+            recommendationUserLocateCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            recommendationUserLocateCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            recommendationUserLocateCollectView.heightAnchor.constraint(equalToConstant: 150),
+
+            
+            categoryRecomenLabel.topAnchor.constraint(equalTo: recommendationUserLocateCollectView.bottomAnchor, constant: 10),
             categoryRecomenLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             categoryRecomenLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
@@ -61,6 +74,7 @@ class search_V : UIView {
             categoryRecomendCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             categoryRecomendCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 200),
+            categoryRecomendCollectView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -100)
             ])
         
         //test data
@@ -94,6 +108,21 @@ class search_V : UIView {
     }()
     let recommendationCollectView : recommendationCollectionView = {
         let collect = recommendationCollectionView()
+        collect.backgroundColor = .green
+        collect.translatesAutoresizingMaskIntoConstraints = false
+        return collect
+    }()
+    let recommendationUserLocateLabel : UILabel = {
+        let label = UILabel()
+        label.text = "위치 기반 추천 스터디입니다."
+        label.textColor = Defaull_style.subTitleColor
+        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let recommendationUserLocateCollectView : recommendationUserLocateCollectionView = {
+        let collect = recommendationUserLocateCollectionView()
         collect.backgroundColor = .green
         collect.translatesAutoresizingMaskIntoConstraints = false
         return collect
@@ -146,26 +175,26 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
         // Initialize UICollectionView without a layout
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        layout.itemSize = CGSize(width: self.frame.width/2, height: self.frame.height)
+        //        layout.itemSize = CGSize(width: self.frame.width/2, height: self.frame.height)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
-
+        
         collectionview = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), collectionViewLayout: layout)
-//        collectionview.collectionViewLayout = layout
+        //        collectionview.collectionViewLayout = layout
         collectionview.contentInsetAdjustmentBehavior = .always
-
+        
         collectionview.dataSource = self
         collectionview.delegate = self
         collectionview.register(recommendationCollectCell.self, forCellWithReuseIdentifier: cellId)
-//        collectionview.showsVerticalScrollIndicator = false
+        //        collectionview.showsVerticalScrollIndicator = false
         collectionview.backgroundColor = UIColor.white
         self.addSubview(collectionview)
-//
-//        NSLayoutConstraint.activate([
-//            collectionview.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-//            collectionview.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
-//            ])
-
+        //
+        //        NSLayoutConstraint.activate([
+        //            collectionview.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+        //            collectionview.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
+        //            ])
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -182,7 +211,70 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! recommendationCollectCell
-//        cell.contentView.backgroundColor = .red
+        //        cell.contentView.backgroundColor = .red
+        return cell
+    }
+    
+}
+class recommendationUserLocateCollectionView : UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    // didSelect에서 사용하는 delegate 정의
+    var delegate : search_VC_delegate?
+    
+    var collectionview: UICollectionView!
+    var cellId = "Cell2"
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Create an instance of UICollectionViewFlowLayout since you cant
+        // Initialize UICollectionView without a layout
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        //        layout.itemSize = CGSize(width: self.frame.width/2, height: self.frame.height)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.scrollDirection = .horizontal
+        
+        collectionview = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), collectionViewLayout: layout)
+        //        collectionview.collectionViewLayout = layout
+        collectionview.contentInsetAdjustmentBehavior = .always
+        
+        collectionview.dataSource = self
+        collectionview.delegate = self
+        collectionview.register(recommendationCollectCell.self, forCellWithReuseIdentifier: cellId)
+        //        collectionview.showsVerticalScrollIndicator = false
+        collectionview.backgroundColor = UIColor.white
+        self.addSubview(collectionview)
+        //
+        //        NSLayoutConstraint.activate([
+        //            collectionview.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+        //            collectionview.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
+        //            ])
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath as IndexPath)!
+        print(cell)
+        
+        //delegate 로 nav로 뷰 이동.
+//        delegate?.navMoveDelegate(self, index: indexPath.row)
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! recommendationCollectCell
+        //        cell.contentView.backgroundColor = .red
         return cell
     }
     
@@ -332,10 +424,16 @@ class categoryCollectView : UIView, TagListViewDelegate{
         biggerTagListView.paddingY = 5
 //        biggerTagListView.tagBackgroundColor = HSBrandomColor()
         biggerTagListView.addTags(["#해시태그","#해시태그","#해시태그해시태그","#해시태그","#해시태그","#해시태그","#해시태그","#해시태그","#해시태그해시태그","#해시태그","#해시태그","#해시태그해시태그"])
-        biggerTagListView.tagBackgroundColor = UIColor.clear
+//        biggerTagListView.tagBackgroundColor = UIColor.clear
+//        for i in biggerTagListView.tagViews{
+//            i.textColor = HSBrandomColor()
+//        }
+        biggerTagListView.textColor = UIColor.white
         for i in biggerTagListView.tagViews{
-            i.textColor = HSBrandomColor()
+            i.tagBackgroundColor = HSBrandomColor()
+            i.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         }
+
         biggerTagListView.alignment = .left
         
         biggerTagListView.translatesAutoresizingMaskIntoConstraints = false

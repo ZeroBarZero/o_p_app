@@ -51,14 +51,14 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
         self.view.addSubview(mainView)
 //        self.view.addSubview(bottomView)
         // layout
-        let margins = view.layoutMarginsGuide
+//        let margins = view.layoutMarginsGuide
         
         let height = Int(self.view.frame.height/8)
 
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-            mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
-            mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20),
+            mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
 //            mainView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0)
             ])
         // bottomView 확인

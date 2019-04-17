@@ -101,9 +101,9 @@ class studyDetail_V : UIView {
         stack.addArrangedSubview(detailLocationLabel)
         stack.addArrangedSubview(memberLabel)
         stack.addArrangedSubview(weekLabel)
-        
-        self.addSubview(stack)
         self.addSubview(lineView)
+        self.addSubview(stack)
+        self.addSubview(lineView2)
         self.addSubview(descriptionLabel_1)
         self.addSubview(weekInfoTable)
         let eachPadding = CGFloat(20)
@@ -111,31 +111,37 @@ class studyDetail_V : UIView {
 
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 60),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: eachPadding),
-            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            
-            stack.topAnchor.constraint(equalTo: self.descriptionLabel.bottomAnchor, constant: eachPadding),
-            stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
             
-            lineView.topAnchor.constraint(equalTo: detailLocationLabel.bottomAnchor, constant: 20),
-            lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            lineView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 40),
+            lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             lineView.heightAnchor.constraint(equalToConstant: 1),
+
+            stack.topAnchor.constraint(equalTo: self.lineView.bottomAnchor, constant: eachPadding),
+            stack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            stack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
-            descriptionLabel_1.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 20),
-            descriptionLabel_1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            descriptionLabel_1.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            
+            lineView2.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20),
+            lineView2.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            lineView2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
+            lineView2.heightAnchor.constraint(equalToConstant: 1),
+            
+            descriptionLabel_1.topAnchor.constraint(equalTo: lineView2.bottomAnchor, constant: 40),
+            descriptionLabel_1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            descriptionLabel_1.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
             weekInfoTable.topAnchor.constraint(equalTo: descriptionLabel_1.bottomAnchor, constant: 10),
-            weekInfoTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            weekInfoTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            weekInfoTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+            weekInfoTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             weekInfoTable.heightAnchor.constraint(equalToConstant: 150)
             
             ])
@@ -152,7 +158,8 @@ class studyDetail_V : UIView {
     }()
     let descriptionLabel : UILabel = {
        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        label.textColor = Defaull_style.subTitleColor
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.text = "코딩 테스트 온라인 스터디 입니다.\n스터디장이 매주 토요일 문제를 내고 스터디원들과 함께 풀고 풀이를 공유합니다. :)"
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -170,7 +177,7 @@ class studyDetail_V : UIView {
     let detailLocationLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        label.text = "온라인 스터디"
+        label.text = "노량진 스터디"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -194,11 +201,18 @@ class studyDetail_V : UIView {
 
     let lineView : UIView = {
         let view = UIView()
-        view.backgroundColor = Defaull_style.whiteGray
+        view.backgroundColor = Defaull_style.subTitleColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
+    let lineView2 : UIView = {
+        let view = UIView()
+        view.backgroundColor = Defaull_style.subTitleColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     let descriptionLabel_1 : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .heavy)

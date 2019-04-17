@@ -137,14 +137,13 @@ class add_study2_V_step2 : UIView {
     }
     @objc func step2_Next(){delegate?.step2_Next()}
     @objc func step2_Prev(){delegate?.step2_Prev()}
+    @objc func step2_OfflineSelectView(){delegate?.step2_offlineSelectView()}
     
     func initView(){
-//        self.backgroundColor = .blue
+        previous_Btn.addTarget(nil, action: #selector(step2_Prev), for: .touchDown)
+        next_Btn.addTarget(nil, action: #selector(step2_Next), for: .touchDown)
+        offlineBtn.addTarget(nil, action: #selector(step2_OfflineSelectView), for: .touchDown)
 
-//        week_selectView.isHidden = true
-//        location_View.isHidden = true
-
-//        week_selectView.delegate = self.delegate
         self.addSubview(scrollView)
         scrollView.addSubview(step2View)
         // 디테일 작성
@@ -163,9 +162,7 @@ class add_study2_V_step2 : UIView {
         step2View.addSubview(pre_Next_Stack_SuperView)
         
         pre_Next_Stack.addArrangedSubview(previous_Btn)
-        previous_Btn.addTarget(nil, action: #selector(step2_Prev), for: .touchDown)
         pre_Next_Stack.addArrangedSubview(next_Btn)
-        next_Btn.addTarget(nil, action: #selector(step2_Next), for: .touchDown)
         
         next_Btn.isEnabled = true
         

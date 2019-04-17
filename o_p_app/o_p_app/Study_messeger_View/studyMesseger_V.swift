@@ -22,13 +22,8 @@ class studyMesseger_V : UIView {
         super.layoutSubviews()
         self.backgroundColor = .white
 
-//        self.addSubview(titleLabel)
         self.addSubview(tableView)
         NSLayoutConstraint.activate([
-//            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-//            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-//            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-//            titleLabel.heightAnchor.constraint(equalToConstant: CGFloat(Defaull_style.mainTitleHeight)),
             
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
@@ -88,7 +83,10 @@ class studyMesseger_V_TV : UIView {
 }
 extension studyMesseger_V_TV : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 extension studyMesseger_V_TV : UITableViewDataSource{
@@ -118,32 +116,33 @@ class studyMesseger_V_TV_C : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func initView(){
-        addSubview(avatar)
+//        addSubview(avatar)
         addSubview(studyNameLabel)
-        addSubview(detailWeekLabel)
-        addSubview(detailMemberLabel)
+        addSubview(lastMessageTimeLabel)
+        addSubview(lastMessageLabel)
 //
-        let eachOtherPadding = CGFloat(5)
+//        let eachOtherPadding = CGFloat(5)
         
         NSLayoutConstraint.activate([
-            avatar.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
-            avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            avatar.widthAnchor.constraint(equalToConstant: 60),
-            avatar.heightAnchor.constraint(equalToConstant: 60),
+//            avatar.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
+//            avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
+//            avatar.widthAnchor.constraint(equalToConstant: 60),
+//            avatar.heightAnchor.constraint(equalToConstant: 60),
             
-            studyNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachOtherPadding),
+            studyNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Defaull_style.defaultPadding),
 //            studyNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            studyNameLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 10),
+            studyNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             
 //            detailMemberLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: eachOtherPadding),
-            detailMemberLabel.centerYAnchor.constraint(equalTo: studyNameLabel.centerYAnchor, constant: 0),
-            detailMemberLabel.leadingAnchor.constraint(equalTo: studyNameLabel.trailingAnchor, constant: 10),
-            detailMemberLabel.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: 0),
+            lastMessageTimeLabel.centerYAnchor.constraint(equalTo: studyNameLabel.centerYAnchor, constant: 0),
+            lastMessageTimeLabel.leadingAnchor.constraint(lessThanOrEqualTo: studyNameLabel.trailingAnchor, constant: 10),
+            lastMessageTimeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
-            detailWeekLabel.topAnchor.constraint(equalTo: detailMemberLabel.bottomAnchor, constant: eachOtherPadding),
-            detailWeekLabel.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 10),
-            detailWeekLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            
+            lastMessageLabel.topAnchor.constraint(equalTo: lastMessageTimeLabel.bottomAnchor, constant: 3),
+            lastMessageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor
+                , constant: Defaull_style.defaultPadding),
+            lastMessageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
+            lastMessageLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Defaull_style.defaultPadding),
             
             ])
     }
@@ -167,19 +166,20 @@ class studyMesseger_V_TV_C : UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let detailMemberLabel : UILabel = {
+    let lastMessageTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "30명"
+        label.text = "오전 11:00"
         label.textColor = Defaull_style.subTitleColor
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let detailWeekLabel : UILabel = {
+    let lastMessageLabel : UILabel = {
         let label = UILabel()
-        label.text = "월,수,금"
-        label.textColor = Defaull_style.subTitleColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.text = "마지막 메세지가 나올 것 입니다. 마지막 메세지가 나올 것 입니다. 마지막 메세지가 나올 것 입니다. 마지막 메세지가 나올 것 입니다."
+        label.numberOfLines = 2
+        label.textColor = Defaull_style.grayTitleColor
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

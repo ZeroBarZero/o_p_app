@@ -30,13 +30,11 @@ class search_VC: UIViewController,search_VC_delegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
-        
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
-        
-        
-        
+        DispatchQueue.main.async {
+            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
+            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+
+        }
         initView()
         
     }
@@ -65,11 +63,13 @@ class search_VC: UIViewController,search_VC_delegate {
         mainView.recommendationCollectView.delegate = self
         
         view.addSubview(mainView)
+        let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            mainView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
+            mainView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
+            
             ])
         
 

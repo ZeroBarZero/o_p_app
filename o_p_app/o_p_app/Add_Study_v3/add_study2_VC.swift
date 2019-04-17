@@ -23,6 +23,7 @@ protocol add_study2_VC_Delegate {
     func step2_timepassing(s:String)
     func step2_memberSelectView()
     func step2_memberSelectView_passingMemberValue(s:String)
+    func step2_offlineSelectView()
 }
 
 class add_study2_VC: UIViewController, add_study2_VC_Delegate {
@@ -182,6 +183,10 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
         //        print(s)
         step2.week_selectView.weekData[currentIndex!] = s
         step2.week_selectView.tableView.reloadData()
+    }
+    func step2_offlineSelectView(){
+        let view = offlineSearch_VC()
+        self.navigationController?.pushViewController(view, animated: true)
     }
     let step1 : add_study2_V_step1 = {
         let view = add_study2_V_step1()

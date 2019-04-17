@@ -15,4 +15,5 @@ target 'o_p_app' do
 	pod 'MessageKit'
     pod 'RxSwift'
     pod 'RxCocoa'
+    pod 'NMapsMap'
 end
