@@ -16,4 +16,6 @@ target 'o_p_app' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'NMapsMap'
+    pod 'CenteredCollectionView'
+
 end

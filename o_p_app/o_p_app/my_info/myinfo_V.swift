@@ -78,7 +78,8 @@ class myinfo_V : UIView {
 //            categoryRecomendCollectView.widthAnchor.constraint(equalTo: widthAnchor),
             categoryRecomendCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: margins),
             categoryRecomendCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -margins),
-            categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 200),
+            categoryRecomendCollectView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+//            categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 200),
 
             ])
     }

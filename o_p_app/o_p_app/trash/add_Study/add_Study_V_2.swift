@@ -367,7 +367,85 @@ class add_Study_V_2 : UIView, FlexibleSteppedProgressBarDelegate,AnimatedTextInp
     }
     
 }
+class studyDaySelectView : UIView {
+    
+    let weekStr = ["월","화","수","목","금","토","일"]
 
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+//        initView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    func initView(){
+        self.backgroundColor = .white
+        daySelectCollectionView.delegate = self
+        daySelectCollectionView.dataSource = self
+        daySelectCollectionView.register(daySelectCVCell.self, forCellWithReuseIdentifier: String(describing: daySelectCVCell.self))
+            
+        addSubview(daySelectCollectionView)
+            
+        NSLayoutConstraint.activate([
+            daySelectCollectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            daySelectCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            daySelectCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            daySelectCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+
+            ])
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        initView()
+        let daySelectCVFlowLayout = UICollectionViewFlowLayout()
+        daySelectCVFlowLayout.scrollDirection = .horizontal
+        daySelectCVFlowLayout.itemSize = CGSize(width: self.frame.width/7, height:  self.frame.width/7)
+        daySelectCollectionView = UICollectionView(frame: self.frame, collectionViewLayout: daySelectCVFlowLayout)
+        
+    }
+    lazy var daySelectCollectionView : UICollectionView  = {
+//        let daySelectCVFlowLayout = UICollectionViewFlowLayout()
+//        daySelectCVFlowLayout.scrollDirection = .horizontal
+//        daySelectCVFlowLayout.itemSize = CGSize(width: self.frame.width/7, height:  self.frame.width/7)
+        let collect = UICollectionView()
+        collect.translatesAutoresizingMaskIntoConstraints = false
+        return collect
+    }()
+    
+//    lazy var dayBaseTimeSelectTableView: UITableView  = {
+//        let table = UITableView()
+//        table.translatesAutoresizingMaskIntoConstraints = false
+//        return table
+//    }()
+}
+extension studyDaySelectView : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: daySelectCVCell.self), for: indexPath) as! daySelectCVCell
+        cell.dayLabel.text = weekStr[indexPath.row]
+        return cell
+    }
+    
+    
+}
+//extension studyDaySelectView : UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+//
+//}
 class weekView : UIView , UITableViewDelegate, UITableViewDataSource{
     
     let weekStr = ["월","화","수","목","금","토","일"]

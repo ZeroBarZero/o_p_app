@@ -1,5 +1,6 @@
 PODS:
   - AnimatedTextInput (0.5.5)
+  - CenteredCollectionView (2.1.0)
   - FlexibleSteppedProgressBar (0.6.0)
   - IQKeyboardManagerSwift (6.2.0)
   - MessageInputBar/Core (0.4.1)
@@ -17,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - AnimatedTextInput
+  - CenteredCollectionView
   - FlexibleSteppedProgressBar
   - IQKeyboardManagerSwift
   - MessageKit
@@ -30,6 +32,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AnimatedTextInput
+    - CenteredCollectionView
     - FlexibleSteppedProgressBar
     - IQKeyboardManagerSwift
     - MessageInputBar
@@ -52,6 +55,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AnimatedTextInput: aadbdfa5a538a03cc9fbea700b43d2bb21a5d132
+  CenteredCollectionView: a32f1d57505be294ff6080251384a38ffd1e61f3
   FlexibleSteppedProgressBar: 523e41e98f131e937f680b228b8c24e23f9751a8
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
@@ -64,6 +68,6 @@ SPEC CHECKSUMS:
   TagListView: 0c7e9c26b9aff858224ee6b155f5fcacd9e27c83
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 6c276feebf7389aaecd8c9c38a9f7e3f8721d0c4
+PODFILE CHECKSUM: 5b8f09c391f9ac61c5635013ddf0c14f45bf61ca
 
 COCOAPODS: 1.5.3

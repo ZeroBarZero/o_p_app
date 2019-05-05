@@ -26,7 +26,8 @@ class search_VC: UIViewController,search_VC_delegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,7 +43,7 @@ class search_VC: UIViewController,search_VC_delegate {
     func initView(){
 //        navigationController?.setNavigationBarHidden(false, animated: true)
         
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.visibleViewController?.title = "탐색하기"
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
@@ -71,7 +72,7 @@ class search_VC: UIViewController,search_VC_delegate {
             mainView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0),
             
             ])
-        
+        mainView.categoryRecomenBtn.addTarget(nil, action: #selector(categoryBtnEvent), for: .touchDown)
 
     }
     @objc func addBtnEvent(){
@@ -79,6 +80,9 @@ class search_VC: UIViewController,search_VC_delegate {
             {
                 self.navigationController?.pushViewController(add_study2_VC(), animated: true)
         }
+    }
+    @objc func categoryBtnEvent(){
+        self.navigationController?.pushViewController(category_VC(), animated: true)
     }
     let mainView: search_V = {
         let v = search_V()

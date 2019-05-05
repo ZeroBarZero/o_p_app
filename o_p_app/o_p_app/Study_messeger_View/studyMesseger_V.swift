@@ -116,18 +116,11 @@ class studyMesseger_V_TV_C : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func initView(){
-//        addSubview(avatar)
         addSubview(studyNameLabel)
         addSubview(lastMessageTimeLabel)
         addSubview(lastMessageLabel)
-//
-//        let eachOtherPadding = CGFloat(5)
         
         NSLayoutConstraint.activate([
-//            avatar.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
-//            avatar.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
-//            avatar.widthAnchor.constraint(equalToConstant: 60),
-//            avatar.heightAnchor.constraint(equalToConstant: 60),
             
             studyNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Defaull_style.defaultPadding),
 //            studyNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),

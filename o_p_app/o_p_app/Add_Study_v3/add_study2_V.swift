@@ -152,7 +152,9 @@ class add_study2_V_step2 : UIView {
         // 장소 선택
         location_View.addArrangedSubview(onlineBtn)
         location_View.addArrangedSubview(offlineBtn)
-        step2View.addSubview(location_View)
+        locationbtnView.addSubview(location_View)
+        
+        step2View.addSubview(locationbtnView)
         step2View.addSubview(week_selectView)
         
         step2View.addSubview(member_selection)
@@ -177,7 +179,6 @@ class add_study2_V_step2 : UIView {
                 UIView.animate(withDuration: 1, animations: {
                     self.week_selectView.layoutIfNeeded()
                 }, completion: nil)
-                
             }else {
                 self.week_selectView.isHidden = true
                 self.heightConstraint?.isActive = false
@@ -245,10 +246,14 @@ class add_study2_V_step2 : UIView {
             location_selection.trailingAnchor.constraint(equalTo: step2View.trailingAnchor, constant: 0),
             //            location_selection.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
             
-            location_View.topAnchor.constraint(equalTo: location_selection.bottomAnchor, constant: 10),
-            location_View.leadingAnchor.constraint(equalTo: step2View.leadingAnchor, constant: +10),
-            location_View.trailingAnchor.constraint(equalTo: step2View.trailingAnchor, constant: -10),
-            //            location_View.bottomAnchor.constraint(equalTo: step2View.bottomAnchor, constant: 0),
+            locationbtnView.topAnchor.constraint(equalTo: location_selection.bottomAnchor, constant: 10),
+            locationbtnView.leadingAnchor.constraint(equalTo: step2View.leadingAnchor, constant: +10),
+            locationbtnView.trailingAnchor.constraint(equalTo: step2View.trailingAnchor, constant: -10),
+            
+            location_View.topAnchor.constraint(equalTo: locationbtnView.topAnchor, constant: 0),
+            location_View.leadingAnchor.constraint(equalTo: locationbtnView.leadingAnchor, constant: 0),
+            location_View.trailingAnchor.constraint(equalTo: locationbtnView.trailingAnchor, constant: 0),
+            location_View.bottomAnchor.constraint(equalTo: locationbtnView.bottomAnchor, constant: 0),            //            location_View.bottomAnchor.constraint(equalTo: step2View.bottomAnchor, constant: 0),
             
             pre_Next_Stack_SuperView.topAnchor.constraint(equalTo: location_View.bottomAnchor, constant: 10),
             pre_Next_Stack_SuperView.leadingAnchor.constraint(equalTo: step2View.leadingAnchor, constant: 0),
@@ -339,6 +344,14 @@ class add_study2_V_step2 : UIView {
         view.distribution = .fillEqually
         return view
     }()
+    lazy var locationbtnView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        return view
+    }()
+
     let onlineBtn : UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false

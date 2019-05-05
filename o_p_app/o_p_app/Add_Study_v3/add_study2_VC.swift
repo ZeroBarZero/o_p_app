@@ -128,7 +128,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
     func showAnimateNextView(currentView:UIView,willView:UIView){
         willView.transform = CGAffineTransform.identity.translatedBy(x: self.view.bounds.width, y: 0)
         willView.isHidden = false
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.7, animations: {
             willView.transform = CGAffineTransform(translationX: 0, y: 0)
             currentView.transform = CGAffineTransform(translationX: -(self.view.bounds.width), y: 0)
         }, completion: { _ in
@@ -139,7 +139,7 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
     func showAnimatePrevView(currentView:UIView,willView:UIView){
         willView.transform = CGAffineTransform.identity.translatedBy(x: -self.view.bounds.width, y: 0)
         willView.isHidden = false
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.7, animations: {
             willView.transform = CGAffineTransform(translationX: 0, y: 0)
             currentView.transform = CGAffineTransform(translationX: (self.view.bounds.width), y: 0)
         }, completion: { _ in

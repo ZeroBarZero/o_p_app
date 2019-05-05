@@ -83,8 +83,11 @@ class popupView_View : UIView {
         changeAndCancleStack.addArrangedSubview(btnStack)
         changeAndCancleStack.addArrangedSubview(enter_Btn)
         
+        btnView.addSubview(changeAndCancleStack)
+
         self.addSubview(timePickerStart)
-        self.addSubview(changeAndCancleStack)
+        self.addSubview(btnView)
+//        self.addSubview(changeAndCancleStack)
         
         timePickerStart.addTarget(nil, action: #selector(pickerChanged(_:)), for: .valueChanged)
         
@@ -100,11 +103,16 @@ class popupView_View : UIView {
             timePickerStart.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             timePickerStart.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
-            changeAndCancleStack.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
-            changeAndCancleStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            changeAndCancleStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            changeAndCancleStack.heightAnchor.constraint(equalToConstant: 80),
-            changeAndCancleStack.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            btnView.topAnchor.constraint(equalTo: timePickerStart.bottomAnchor, constant: 0),
+            btnView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            btnView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            btnView.heightAnchor.constraint(equalToConstant: 80),
+            btnView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            
+            changeAndCancleStack.topAnchor.constraint(equalTo: btnView.topAnchor, constant: 0),
+            changeAndCancleStack.leadingAnchor.constraint(equalTo: btnView.leadingAnchor, constant: 0),
+            changeAndCancleStack.trailingAnchor.constraint(equalTo: btnView.trailingAnchor, constant: 0),
+            changeAndCancleStack.bottomAnchor.constraint(equalTo: btnView.bottomAnchor, constant: 0),
             ])
         // 삭제할거임..아니면 취소버튼으로 만둘기~~
         enter_Btn.addTarget(self, action: #selector(dismissPopViewDelegate), for: .touchDown)
@@ -207,6 +215,13 @@ class popupView_View : UIView {
 //        stack.spacing = 2
         return stack
     }()
+    lazy var btnView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        return view
+    }()
     let changeAndCancleStack : UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
@@ -222,7 +237,7 @@ class popupView_View : UIView {
 //        button.layer.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = Defaull_style.themeColor
+        button.backgroundColor = Defaull_style.themeReverseColor
         button.setTitle("취소", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

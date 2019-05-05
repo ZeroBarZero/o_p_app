@@ -37,8 +37,8 @@ class add_Study_VC : UIViewController , popupView_delegate{
     }
     func passingWeekValue(s:String){
         print(s)
-        mainView.week_selectView.weekData[currentIndex!] = s
-        mainView.week_selectView.tableView.reloadData()
+//        mainView.week_selectView.weekData[currentIndex!] = s
+//        mainView.week_selectView.tableView.reloadData()
     }
     func passingMemberValue(s:String){
         mainView.member_selection.text = s

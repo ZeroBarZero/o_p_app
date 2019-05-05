@@ -48,7 +48,8 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
         
         tabFour.tabBarItem = tabFourBarItem4
         
-        
+        self.tabBarController?.tabBar.tintColor  = .black
+        tabBar.tintColor = .black
         self.viewControllers = [tabOne, tabTwo, tabThree,tabFour]
         
     }

@@ -25,6 +25,7 @@ class add_Study_selectPeople_popVIew : UIViewController, UIPickerViewDataSource,
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectMemberLabel.text = String(row + 1) + " 명"
         enter_Btn.isEnabled = true
+        enter_Btn.backgroundColor = Defaull_style.themeReverseColor
     }
     
     override func viewDidLoad() {
@@ -62,10 +63,10 @@ class add_Study_selectPeople_popVIew : UIViewController, UIPickerViewDataSource,
 //            picker.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 0),
             
             enter_Btn.topAnchor.constraint(equalTo: picker.bottomAnchor, constant: 0),
-            enter_Btn.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 0),
-            enter_Btn.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 0),
-            enter_Btn.heightAnchor.constraint(equalToConstant: 40),
-            enter_Btn.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: 0),
+            enter_Btn.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            enter_Btn.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
+            enter_Btn.heightAnchor.constraint(equalToConstant: 60),
+            enter_Btn.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -10),
             ])
         enter_Btn.addTarget(nil, action: #selector(enterBtnEvent), for: .touchDown)
     }
@@ -108,6 +109,7 @@ class add_Study_selectPeople_popVIew : UIViewController, UIPickerViewDataSource,
         button.backgroundColor = Defaull_style.themeColor
         button.setTitle("확인", for: .normal)
         button.setTitle("인원을 선택해주세요.", for: .disabled)
+        button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
