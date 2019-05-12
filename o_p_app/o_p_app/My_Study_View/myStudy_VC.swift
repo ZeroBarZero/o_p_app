@@ -31,10 +31,10 @@ class myStudy_VC : UIViewController,myStudy_VC_delegate {
         
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = .white
 
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
         self.navigationController?.visibleViewController?.title = "내스터디"

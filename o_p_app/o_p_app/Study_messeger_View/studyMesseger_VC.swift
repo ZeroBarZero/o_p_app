@@ -17,7 +17,7 @@ class studyMessager_VC : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.visibleViewController?.title = "내메신저"
         view.backgroundColor = .white

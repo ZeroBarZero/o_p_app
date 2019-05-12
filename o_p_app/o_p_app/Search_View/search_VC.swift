@@ -25,15 +25,20 @@ class search_VC: UIViewController,search_VC_delegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.visibleViewController?.title = "탐색하기"
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         DispatchQueue.main.async {
             let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
-            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+//            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
 
         }
         initView()
@@ -44,12 +49,12 @@ class search_VC: UIViewController,search_VC_delegate {
 //        navigationController?.setNavigationBarHidden(false, animated: true)
         
 //        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.visibleViewController?.title = "탐색하기"
-        self.navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
-        self.navigationItem.leftBarButtonItem?.tintColor = Defaull_style.mainTitleColor
-        self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
-        self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
+//        self.navigationController?.visibleViewController?.title = "탐색하기"
+//        self.navigationController?.navigationBar.largeTitleTextAttributes =
+//            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
+//        self.navigationItem.leftBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+//        self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
+//        self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
         
         // 뷰 겹치는거 방지
         self.navigationController!.navigationBar.isTranslucent = false
@@ -57,7 +62,7 @@ class search_VC: UIViewController,search_VC_delegate {
         self.navigationController!.view.backgroundColor = .white
         // 아래 그림자 생기는거 지우기
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
+
         
         view.backgroundColor = .white
 
@@ -87,7 +92,7 @@ class search_VC: UIViewController,search_VC_delegate {
     let mainView: search_V = {
         let v = search_V()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = .cyan
+        v.backgroundColor = .white
 //        v.delaysContentTouches = false
         return v
     }()

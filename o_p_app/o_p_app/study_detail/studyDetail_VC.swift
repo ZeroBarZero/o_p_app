@@ -32,7 +32,7 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        navigationController?.setNavigationBarHidden(false, animated: true)
         bottomView.delegate = self
         
         self.navigationController?.navigationBar.prefersLargeTitles = false

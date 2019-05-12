@@ -12,6 +12,8 @@ import UIKit
 class category_VC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
         // 뷰 겹치는거 방지
         self.navigationController!.navigationBar.isTranslucent = false
         // 까만거 지우려고

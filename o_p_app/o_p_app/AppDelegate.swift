@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UINavigationController(rootViewController: ViewController())
+//       window?.rootViewController?.navigationController?.navigationBar.prefersLargeTitles = true
 //        window?.rootViewController?.navigationItem.largeTitleDisplayMode = .never
         window?.makeKeyAndVisible()
 

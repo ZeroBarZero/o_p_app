@@ -36,9 +36,11 @@ class search_V : UIView,UIScrollViewDelegate {
 //    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
 //        scrollView.contentOffset.y = 0.0
 //    }
+    // variable to save the last position visited, default to zero
+    private var lastContentOffset: CGFloat = 0
 
     func initView(){
-//        scrollView.delegate = self
+        scrollView.delegate = self
         // addsubview
         self.addSubview(scrollView)
         scrollView.addSubview(recommendationLabel)
@@ -53,7 +55,7 @@ class search_V : UIView,UIScrollViewDelegate {
 
         // constraint
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
@@ -88,7 +90,7 @@ class search_V : UIView,UIScrollViewDelegate {
             categoryRecomenBtn.leadingAnchor.constraint(lessThanOrEqualTo: categoryRecomenLabel.trailingAnchor, constant: 0),
             
             
-            categoryRecomendCollectView.topAnchor.constraint(equalTo: categoryRecomenLabel.bottomAnchor, constant: 10),
+            categoryRecomendCollectView.topAnchor.constraint(equalTo: categoryRecomenLabel.bottomAnchor, constant: 20),
             categoryRecomendCollectView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             categoryRecomendCollectView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
 //            categoryRecomendCollectView.heightAnchor.constraint(equalToConstant: 100),
@@ -121,7 +123,7 @@ class search_V : UIView,UIScrollViewDelegate {
         let label = UILabel()
         //        label.text = " 님을 위한 스터디입니다."
         label.textColor = Defaull_style.subTitleColor
-        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -135,7 +137,7 @@ class search_V : UIView,UIScrollViewDelegate {
         let label = UILabel()
         label.text = "위치 기반 추천 스터디입니다."
         label.textColor = Defaull_style.subTitleColor
-        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -150,7 +152,7 @@ class search_V : UIView,UIScrollViewDelegate {
         let label = UILabel()
         label.text = "카테고리"
         label.textColor = Defaull_style.subTitleColor
-        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -249,6 +251,65 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
         return cell
     }
     
+}
+extension search_V  {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // move up
+            print("scroll1")
+            // 스크롤 방향
+            UIView.animate(withDuration: 0.6, animations: {
+                
+                self.recommendationLabel.center.y += 0.8
+                self.recommendationUserLocateLabel.center.y += 0.8
+                self.categoryRecomenLabel.center.y += 0.8
+                
+            })
+            
+        }
+        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // move down
+            print("scroll1")
+            // 스크롤 방향
+            UIView.animate(withDuration: 0.6, animations: {
+                
+                self.recommendationLabel.center.y -= 0.8
+                self.recommendationUserLocateLabel.center.y -= 0.8
+                self.categoryRecomenLabel.center.y -= 0.8
+                
+            })
+            
+        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+
+    }
+//    func scrollViewDidScroll(scrollView: UIScrollView!) {
+//    }
+//
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        print("scroll1")
+//        // 스크롤 방향
+//        UIView.animate(withDuration: 0.6, animations: {
+//
+//            self.recommendationLabel.center.y += 20
+//            self.recommendationUserLocateLabel.center.y += 20
+//            self.categoryRecomenLabel.center.y += 20
+//
+//        })
+//    }
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        print("scroll3")
+//        // 원상복귀
+//        UIView.animate(withDuration: 0.6, animations: {
+//            self.recommendationLabel.transform.isIdentity
+//            self.recommendationUserLocateLabel.transform.isIdentity
+//            self.categoryRecomenLabel.transform.isIdentity
+//
+//        })
+//
+//    }
 }
 class recommendationUserLocateCollectionView : UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // didSelect에서 사용하는 delegate 정의
