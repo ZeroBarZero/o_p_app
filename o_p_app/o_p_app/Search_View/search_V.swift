@@ -16,11 +16,6 @@ class search_V : UIView,UIScrollViewDelegate {
         super.init(frame: frame)
         self.backgroundColor = .white
         initView()
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
-        }
-
-
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -43,6 +38,7 @@ class search_V : UIView,UIScrollViewDelegate {
         scrollView.delegate = self
         // addsubview
         self.addSubview(scrollView)
+        scrollView.addSubview(navView)
         scrollView.addSubview(recommendationLabel)
         scrollView.addSubview(recommendationCollectView)
         scrollView.addSubview(recommendationUserLocateLabel)
@@ -50,17 +46,21 @@ class search_V : UIView,UIScrollViewDelegate {
         scrollView.addSubview(categoryRecomenLabel)
         scrollView.addSubview(categoryRecomenBtn)
         scrollView.addSubview(categoryRecomendCollectView)
-
+        navView.setTitleText(s: "탐색하기")
         let margins = self.safeAreaLayoutGuide
 
         // constraint
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             
-            recommendationLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
+            navView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0),
+            navView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            navView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            
+            recommendationLabel.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
             recommendationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             recommendationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
@@ -108,7 +108,11 @@ class search_V : UIView,UIScrollViewDelegate {
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
-    
+    lazy var navView : customNavigationViewWithPlus = {
+        let view = customNavigationViewWithPlus()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     let titleLabel : UILabel = {
         let label = UILabel()
         label.text = "탐색하기"
@@ -254,33 +258,45 @@ class recommendationCollectionView : UIView, UICollectionViewDataSource, UIColle
 }
 extension search_V  {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (self.lastContentOffset > scrollView.contentOffset.y) {
-            // move up
-            print("scroll1")
-            // 스크롤 방향
-            UIView.animate(withDuration: 0.6, animations: {
-                
-                self.recommendationLabel.center.y += 0.8
-                self.recommendationUserLocateLabel.center.y += 0.8
-                self.categoryRecomenLabel.center.y += 0.8
-                
-            })
-            
-        }
-        else if (self.lastContentOffset < scrollView.contentOffset.y) {
-            // move down
-            print("scroll1")
-            // 스크롤 방향
-            UIView.animate(withDuration: 0.6, animations: {
-                
-                self.recommendationLabel.center.y -= 0.8
-                self.recommendationUserLocateLabel.center.y -= 0.8
-                self.categoryRecomenLabel.center.y -= 0.8
-                
-            })
-            
-        }
         
+//        print(lastContentOffset)
+//        print(scrollView.contentOffset.y)
+        print(lastContentOffset - scrollView.contentOffset.y)
+
+        var differenceBetween = lastContentOffset - scrollView.contentOffset.y
+        
+        if differenceBetween > 2 {
+            differenceBetween = 2
+        }
+        if differenceBetween < -2 {
+            differenceBetween = -2
+        }
+//        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            /// move up & down
+            print("scroll1")
+            // 스크롤 방향
+            UIView.animate(withDuration: 0.6, animations: {
+                
+                self.recommendationLabel.center.y += differenceBetween/4
+                self.recommendationUserLocateLabel.center.y += differenceBetween/4
+                self.categoryRecomenLabel.center.y += differenceBetween/4
+                
+            })
+            
+//        }
+//        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+//            // move down
+//            print("scroll1")
+//            // 스크롤 방향
+//            UIView.animate(withDuration: 0.6, animations: {
+//
+//                self.recommendationLabel.center.y += differenceBetween/2
+//                self.recommendationUserLocateLabel.center.y += differenceBetween/2
+//                self.categoryRecomenLabel.center.y += differenceBetween/2
+//
+//            })
+//
+//        }
         // update the new position acquired
         self.lastContentOffset = scrollView.contentOffset.y
 

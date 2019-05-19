@@ -21,28 +21,42 @@ class myInfo_VC : UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
-        
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = edit
+        navigationController?.setNavigationBarHidden(true, animated: true)
 
-        self.navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
-        self.navigationController?.visibleViewController?.title = "내정보"
+//        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+//
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = edit
+//
+//        self.navigationController?.navigationBar.largeTitleTextAttributes =
+//            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
+//        self.navigationController?.visibleViewController?.title = "내정보"
 
         view.backgroundColor = .white
         let mainView = myinfo_V()
         mainView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navView)
         view.addSubview(mainView)
+        navView.setTitleText(s: "내정보")
 //        let margins = Defaull_style.defaultPadding
         
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            navView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0),
+            navView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            navView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+
+            mainView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
-            mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+//            mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
             ])
         
     }
+    lazy var navView : customNavigationView = {
+        let view = customNavigationView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     
 }
 

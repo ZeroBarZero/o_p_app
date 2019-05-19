@@ -24,14 +24,14 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
 //        let tabBarController = UITabBarController()
 
         // 탐색하기
-        let tabOne = search_VC()
+        let tabOne = UINavigationController(rootViewController: search_VC())
         let tabOneBarItem = UITabBarItem(title: "탐색하기", image: UIImage(named: "defaultImage.png"), selectedImage: UIImage(named: "selectedImage.png"))
         
         tabOne.tabBarItem = tabOneBarItem
         
         
         // 내스터디
-        let tabTwo = myStudy_VC()
+        let tabTwo = UINavigationController(rootViewController: myStudy_VC())
         let tabTwoBarItem2 = UITabBarItem(title: "내스터디", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
         
         tabTwo.tabBarItem = tabTwoBarItem2
@@ -62,4 +62,45 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
 //    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 //        print("Selected \(viewController.title!)")
 //    }
+}
+extension UITabBarController {
+    func hideTabBarAnimated(hide:Bool, completion: ((Bool)->Void)? = nil ) {
+        if (tabBarIsVisible() == !hide) {
+            if let completion = completion {
+                return completion(true)
+            }
+            else {
+                return
+            }
+        }
+        // get a frame calculation ready
+        let height = self.tabBar.frame.size.height
+        let offsetY = (!hide ? -height : height)
+        
+        // zero duration means no animation
+        let duration = 0.33
+        
+        UIView.animate(withDuration: duration, animations: {
+            let frame = self.tabBar.frame
+            self.tabBar.frame = frame.offsetBy(dx: 0, dy: offsetY)
+        })
+        
+        //        switch hide {
+        //        case true:
+        //            UIView.animate(withDuration: 0.33, animations: {
+        //                self.tabBar.transform = CGAffineTransform(translationX: 0, y: 50)
+        //            }) { (finished) in
+        //                if finished { self.tabBar.isHidden = hide}
+        //            }
+        //        case false:
+        //            UIView.animate(withDuration: 0.3, animations: {
+        //                self.tabBar.transform = CGAffineTransform.identity
+        //            })
+        //            tabBar.isHidden = hide
+        //        }
+    }
+    func tabBarIsVisible() -> Bool {
+        return self.tabBar.frame.origin.y < view.frame.maxY
+    }
+
 }

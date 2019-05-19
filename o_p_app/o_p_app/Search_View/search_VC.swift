@@ -25,45 +25,28 @@ class search_VC: UIViewController,search_VC_delegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.visibleViewController?.title = "탐색하기"
-
+        mainView.navView.plusBtn.addTarget(self, action: #selector(addBtnEvent), for: .touchUpInside)
     }
+//    @objc func plusEvent(){
+//
+//    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.hideTabBarAnimated(hide: false,completion: {_ in })
 
-        DispatchQueue.main.async {
-            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
+//        DispatchQueue.main.async {
+//            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
 //            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
-
-        }
+//
+//        }
         initView()
         
     }
 
-    func initView(){
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-        
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//        self.navigationController?.visibleViewController?.title = "탐색하기"
-//        self.navigationController?.navigationBar.largeTitleTextAttributes =
-//            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
-//        self.navigationItem.leftBarButtonItem?.tintColor = Defaull_style.mainTitleColor
-//        self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
-//        self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
-        
-        // 뷰 겹치는거 방지
-        self.navigationController!.navigationBar.isTranslucent = false
-        // 까만거 지우려고
-        self.navigationController!.view.backgroundColor = .white
-        // 아래 그림자 생기는거 지우기
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-
-        
+    func initView(){        
         view.backgroundColor = .white
 
         mainView.recommendationCollectView.delegate = self

@@ -13,7 +13,7 @@ import UIKit
 protocol studyDetail_VC_Delegate {
     func alertDelegate()
 }
-class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
+class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecognizerDelegate{
     func alertDelegate() {
         let showAlert = UIAlertController(title: "가입신청이벤트", message: "그냥나중에이벤트", preferredStyle: .alert)
         
@@ -23,16 +23,33 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
         self.present(showAlert, animated: true)
 
     }
-    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
     // 내 스터디가 아닌 경우에는 없앰
     var bottomViewCheck : Bool? = nil
-    
+    @objc func buttonClicked() {
+        //        print("Button Clicked")
+        self.navigationController?.popViewController(animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.navView.backBtn.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
+        mainView.navView.setTitleText(s: "코딩 테스트 온라인 스터디")
+        self.tabBarController?.hideTabBarAnimated(hide: true,completion: {_ in })
+
+        navigationController?.setNavigationBarHidden(true, animated: true)
         bottomView.delegate = self
         
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -40,12 +57,6 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
         self.navigationItem.rightBarButtonItem?.tintColor = Defaull_style.mainTitleColor
         self.navigationController?.navigationBar.tintColor = Defaull_style.mainTitleColor
         
-
-//        // 뷰 겹치는거 방지
-//        self.navigationController!.navigationBar.isTranslucent = false
-//        self.navigationController?.visibleViewController?.title = "내스터디"
-//        // 아래 그림자 생기는거 지우기
-////        self.navigationController?.navigationBar.shadowImage = UIImage()
 
         self.view.backgroundColor = .white
         self.view.addSubview(mainView)
@@ -56,7 +67,7 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate{
         let height = Int(self.view.frame.height/8)
 
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            mainView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
 //            mainView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0)

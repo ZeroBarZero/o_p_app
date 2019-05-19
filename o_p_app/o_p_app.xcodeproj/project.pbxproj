@@ -19,6 +19,7 @@
 		4A84A00122633C6200FF06DA /* add_study2_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A84A00022633C6200FF06DA /* add_study2_V.swift */; };
 		4A96D58622508B5100517919 /* login_V.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96D58522508B5100517919 /* login_V.swift */; };
 		4A96D58922508B6B00517919 /* login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A96D58822508B6B00517919 /* login_VC.swift */; };
+		4AA3E45F229118BB004A84D5 /* customNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3E45E229118BB004A84D5 /* customNavigationView.swift */; };
 		4AA72FA42266A8680043A0BD /* offlineSearch_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA72FA32266A8680043A0BD /* offlineSearch_VC.swift */; };
 		4AA72FA6226728070043A0BD /* offlineSearch_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA72FA5226728060043A0BD /* offlineSearch_VM.swift */; };
 		4ABF96DD223E105A006FFD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF96DC223E105A006FFD40 /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		4A84A00022633C6200FF06DA /* add_study2_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = add_study2_V.swift; sourceTree = "<group>"; };
 		4A96D58522508B5100517919 /* login_V.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = login_V.swift; sourceTree = "<group>"; };
 		4A96D58822508B6B00517919 /* login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = login_VC.swift; sourceTree = "<group>"; };
+		4AA3E45E229118BB004A84D5 /* customNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customNavigationView.swift; sourceTree = "<group>"; };
 		4AA72F1C22669FEC0043A0BD /* map_pinup_custom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pinup_custom@3x.png"; sourceTree = "<group>"; };
 		4AA72F1D22669FEC0043A0BD /* map_pin_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin_custom.png; sourceTree = "<group>"; };
 		4AA72F1E22669FEC0043A0BD /* shadow_balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_balloon.png; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		4A17DA5B2264D6D900CDC850 /* Add_Study_v3 */ = {
 			isa = PBXGroup;
 			children = (
+				4AA3E45D22911898004A84D5 /* New Group1 */,
 				4A00DB9E227EF1D100493AD0 /* category */,
 				4A12E31C22757DEC00E16026 /* example */,
 				4AA72FA22266A83C0043A0BD /* offlineSearch */,
@@ -201,6 +204,14 @@
 				4A96D58522508B5100517919 /* login_V.swift */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		4AA3E45D22911898004A84D5 /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+				4AA3E45E229118BB004A84D5 /* customNavigationView.swift */,
+			);
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		4AA72F1A22669FEC0043A0BD /* DaumMap.embeddedframework */ = {
@@ -549,6 +560,7 @@
 				4ABF96F8223E15BB006FFD40 /* ViewController.swift in Sources */,
 				4ABF970E22428C12006FFD40 /* studyDetail_VC.swift in Sources */,
 				4AA72FA6226728070043A0BD /* offlineSearch_VM.swift in Sources */,
+				4AA3E45F229118BB004A84D5 /* customNavigationView.swift in Sources */,
 				4ABF9701223E85D3006FFD40 /* mtStudy_V.swift in Sources */,
 				4ABF96DF223E105A006FFD40 /* search_VC.swift in Sources */,
 				4ABF97172247393D006FFD40 /* add_Study_V.swift in Sources */,
@@ -727,7 +739,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9DJXYBHDAK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -752,7 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9DJXYBHDAK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

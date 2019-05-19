@@ -95,7 +95,8 @@ class studyDetail_V : UIView {
     func initView() {
         self.backgroundColor = .white
         
-        self.addSubview(titleLabel)
+        self.addSubview(navView)
+//        self.addSubview(titleLabel)
         self.addSubview(descriptionLabel)
 
         stack.addArrangedSubview(detailLocationLabel)
@@ -111,11 +112,11 @@ class studyDetail_V : UIView {
 
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
+            navView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            navView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            navView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 5),
             descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
             
@@ -147,7 +148,13 @@ class studyDetail_V : UIView {
             ])
         
     }
-    
+    lazy var navView : customNavigationViewWithBack = {
+        let view = customNavigationViewWithBack()
+        //        view.backBtn.addTarget(self, action: #selector(buttonClicked), for: .touchDown)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     let titleLabel : UILabel = {
        let label = UILabel()
         label.text = "코딩 테스트 온라인 스터디"

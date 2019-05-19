@@ -28,15 +28,6 @@ class myStudy_V : UIView {
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
             ])
     }
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.text = "  내스터디"
-        label.textAlignment = .left
-        label.textColor = Defaull_style.mainTitleColor
-        label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     let tableView : myStudy_V_TV = {
         let view = myStudy_V_TV()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +39,7 @@ class myStudy_V_TV : UIView {
     var delegate : myStudy_VC_delegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
+        initView()
     }
     
     
@@ -56,7 +48,6 @@ class myStudy_V_TV : UIView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        initView()
     }
     func initView(){
         self.addSubview(tableView)
@@ -64,6 +55,11 @@ class myStudy_V_TV : UIView {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.tableHeaderView = navView
+        navView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 45+24+20)
+        navView.setTitleText(s: "내스터디")
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
@@ -71,12 +67,18 @@ class myStudy_V_TV : UIView {
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             ])
     }
+    lazy var navView : customNavigationViewWithPlus = {
+        let view = customNavigationViewWithPlus()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     let tableView : UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
-        table.backgroundColor = Defaull_style.topTableView
+        table.backgroundColor = .white
         table.translatesAutoresizingMaskIntoConstraints  = false
         return table
     }()

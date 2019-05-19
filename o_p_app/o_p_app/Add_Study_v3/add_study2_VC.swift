@@ -13,6 +13,8 @@ import RxCocoa
 import RxSwift
 
 protocol add_study2_VC_Delegate {
+    func backBtn()
+    
     func step1_Next()
     func step2_Next()
     func step2_Prev()
@@ -26,7 +28,7 @@ protocol add_study2_VC_Delegate {
     func step2_offlineSelectView()
 }
 
-class add_study2_VC: UIViewController, add_study2_VC_Delegate {
+class add_study2_VC: UIViewController, add_study2_VC_Delegate,UIGestureRecognizerDelegate {
     
     var disposeBag = DisposeBag()
     let leadingPadding = CGFloat(20)
@@ -39,18 +41,27 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navView.backBtn.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         initView()
     }
-    // TODO : 버튼 재사용 하는거로 바꾸기..
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+
+        self.tabBarController?.hideTabBarAnimated(hide: true,completion: {_ in })
+
+        navigationController?.setNavigationBarHidden(true, animated: true)
+
         hideKeyboardWhenTappedAround()
-        
+
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.visibleViewController?.title = "새로운 스터디 만들기"
-        
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.visibleViewController?.title = "새로운 스터디 만들기"
         step1.delegate = self
         step2.delegate = self
         step3.delegate = self
@@ -72,32 +83,57 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
             })
             .disposed(by: disposeBag)
     }
+    @objc func buttonClicked() {
+//        print("Button Clicked")
+        self.navigationController?.popViewController(animated: true)
+    }
     func initView(){
+        
+
         step2.isHidden = true
         step3.isHidden = true
         step1.isHidden = false
         
+        view.addSubview(navView)
         view.addSubview(step1)
         view.addSubview(step2)
         view.addSubview(step3)
         
+        navView.setTitleText(s: "새로운 스터디 만들기")
+        NSLayoutConstraint.activate([
+            navView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor,constant: 0),
+            navView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            navView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+
+            ])
         NSLayoutConstraint.activate([
             step1.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            step1.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            step1.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
+            step1.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0),
+
+//            step1.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
             ])
         NSLayoutConstraint.activate([
             step2.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            step2.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+//            step2.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            step2.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
+            step2.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0),
+
             ])
         NSLayoutConstraint.activate([
             step3.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: 0),
-            step3.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+//            step3.heightAnchor.constraint(equalTo: self.view.heightAnchor, constant: 0),
+            step3.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
+            step3.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0),
+
             ])
     }
     func check( _ s : String) -> Bool{
         return s.count > 0
     }
-    
+    func backBtn(){
+        self.navigationController?.popViewController(animated: true)
+    }
     func step1_Next() {
         view.endEditing(true)
         showAnimateNextView(currentView: step1, willView: step2)
@@ -188,17 +224,23 @@ class add_study2_VC: UIViewController, add_study2_VC_Delegate {
         let view = offlineSearch_VC()
         self.navigationController?.pushViewController(view, animated: true)
     }
-    let step1 : add_study2_V_step1 = {
+    lazy var navView : customNavigationViewWithBack = {
+        let view = customNavigationViewWithBack()
+//        view.backBtn.addTarget(self, action: #selector(buttonClicked), for: .touchDown)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    lazy var step1 : add_study2_V_step1 = {
         let view = add_study2_V_step1()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let step2 : add_study2_V_step2 = {
+    lazy var step2 : add_study2_V_step2 = {
         let view = add_study2_V_step2()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let step3 : add_study2_V_step3 = {
+    lazy var step3 : add_study2_V_step3 = {
         let view = add_study2_V_step3()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -215,7 +257,9 @@ extension add_study2_VC {
                                                 action: #selector(hideKeyboard))
         // 없으면 테이블 뷰 셀(didselect) 셀렉트 이벤트같은 것들 무시하기 때문에 꼭 써줘야 함..
         tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+        step1.addGestureRecognizer(tapGesture)
+        step2.addGestureRecognizer(tapGesture)
+        step3.addGestureRecognizer(tapGesture)
     }
     
     @objc func hideKeyboard() {

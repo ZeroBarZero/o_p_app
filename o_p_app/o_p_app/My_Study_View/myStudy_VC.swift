@@ -30,31 +30,33 @@ class myStudy_VC : UIViewController,myStudy_VC_delegate {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        
+        self.tabBarController?.hideTabBarAnimated(hide: false,completion: {_ in })
+
         navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = .white
-
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.largeTitleTextAttributes =
-            [NSAttributedString.Key.foregroundColor: Defaull_style.mainTitleColor]
-        self.navigationController?.visibleViewController?.title = "내스터디"
-
-        view.backgroundColor = .white
-        let mainView = myStudy_V()
+        
         mainView.tableView.delegate = self
         mainView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(mainView)
         let margins = view.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
+
             mainView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
             mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
             ])
 
-        mainView.tableView.tableView.layoutSubviews()
+//        mainView.tableView.tableView.layoutSubviews()
     }
+    lazy var mainView  : myStudy_V = {
+        let view = myStudy_V()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
