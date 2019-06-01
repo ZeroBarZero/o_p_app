@@ -48,6 +48,9 @@
 		4ABF971922473944006FFD40 /* add_Study_VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABF971822473944006FFD40 /* add_Study_VM.swift */; };
 		4AC9A802227EA7F60017EB12 /* CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9A801227EA7F60017EB12 /* CVCell.swift */; };
 		4AC9A805227EAACE0017EB12 /* TVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9A804227EAACE0017EB12 /* TVCell.swift */; };
+		7D77B30122A295C100CECFB7 /* messageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77B30022A295C100CECFB7 /* messageVC.swift */; };
+		7D77B30522A2961400CECFB7 /* type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77B30422A2961400CECFB7 /* type.swift */; };
+		7DB47A4422A286540067C116 /* studyDetail_M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB47A4322A286540067C116 /* studyDetail_M.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +134,9 @@
 		4AC9A801227EA7F60017EB12 /* CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVCell.swift; sourceTree = "<group>"; };
 		4AC9A804227EAACE0017EB12 /* TVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCell.swift; sourceTree = "<group>"; };
 		7791C2CACA7A829AE450E88F /* Pods-o_p_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.release.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.release.xcconfig"; sourceTree = "<group>"; };
+		7D77B30022A295C100CECFB7 /* messageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageVC.swift; sourceTree = "<group>"; };
+		7D77B30422A2961400CECFB7 /* type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = type.swift; sourceTree = "<group>"; };
+		7DB47A4322A286540067C116 /* studyDetail_M.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyDetail_M.swift; sourceTree = "<group>"; };
 		B089DB718B13DD7A426E9D5A /* Pods_o_p_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_o_p_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F21E7259D04A715E8DD0EE /* Pods-o_p_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-o_p_app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,6 +317,7 @@
 				4ABF970C22428BED006FFD40 /* study_detail */,
 				4ABF96FD223E846E006FFD40 /* my_info */,
 				4ABF96F2223E1296006FFD40 /* Study_messeger_View */,
+				7DB47A4522A290490067C116 /* StudyMessageDetail */,
 				4ABF96F1223E1261006FFD40 /* My_Study_View */,
 				4ABF96F0223E1250006FFD40 /* Search_View */,
 				4ABF96DC223E105A006FFD40 /* AppDelegate.swift */,
@@ -372,6 +379,7 @@
 				4ABF970D22428C12006FFD40 /* studyDetail_VC.swift */,
 				4ABF970F22428C19006FFD40 /* studyDetail_V.swift */,
 				4ABF971122428C30006FFD40 /* studyDetail_VM.swift */,
+				7DB47A4322A286540067C116 /* studyDetail_M.swift */,
 			);
 			path = study_detail;
 			sourceTree = "<group>";
@@ -408,6 +416,23 @@
 			children = (
 			);
 			path = messeger_View;
+			sourceTree = "<group>";
+		};
+		7DB47A4522A290490067C116 /* StudyMessageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7DB47A4822A290B00067C116 /* BasicAudioController */,
+				7D77B30022A295C100CECFB7 /* messageVC.swift */,
+				7D77B30422A2961400CECFB7 /* type.swift */,
+			);
+			path = StudyMessageDetail;
+			sourceTree = "<group>";
+		};
+		7DB47A4822A290B00067C116 /* BasicAudioController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BasicAudioController;
 			sourceTree = "<group>";
 		};
 		89B2BAB21DC2DDF40F180528 /* Frameworks */ = {
@@ -494,11 +519,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-o_p_app/Pods-o_p_app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AnimatedTextInput/AnimatedTextInput.framework",
 				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/FlexibleSteppedProgressBar/FlexibleSteppedProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MessengerKit/MessengerKit.framework",
@@ -515,6 +541,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexibleSteppedProgressBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessengerKit.framework",
@@ -527,7 +554,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-o_p_app/Pods-o_p_app-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-o_p_app/Pods-o_p_app-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC90EC16797355F2110AA588 /* [CP] Check Pods Manifest.lock */ = {
@@ -559,6 +586,7 @@
 				4ABF970B223E8E00006FFD40 /* myinfo_VM.swift in Sources */,
 				4ABF96F8223E15BB006FFD40 /* ViewController.swift in Sources */,
 				4ABF970E22428C12006FFD40 /* studyDetail_VC.swift in Sources */,
+				7DB47A4422A286540067C116 /* studyDetail_M.swift in Sources */,
 				4AA72FA6226728070043A0BD /* offlineSearch_VM.swift in Sources */,
 				4AA3E45F229118BB004A84D5 /* customNavigationView.swift in Sources */,
 				4ABF9701223E85D3006FFD40 /* mtStudy_V.swift in Sources */,
@@ -571,6 +599,7 @@
 				4A12E32122757E3200E16026 /* ProgrammaticCollectionViewCell.swift in Sources */,
 				4ABF971522473934006FFD40 /* add_Study_VC.swift in Sources */,
 				4A96D58922508B6B00517919 /* login_VC.swift in Sources */,
+				7D77B30522A2961400CECFB7 /* type.swift in Sources */,
 				4ABF971922473944006FFD40 /* add_Study_VM.swift in Sources */,
 				4A849FFF2262DBE500FF06DA /* add_study2_VC.swift in Sources */,
 				4ABF971022428C19006FFD40 /* studyDetail_V.swift in Sources */,
@@ -586,6 +615,7 @@
 				4ABF96F4223E1359006FFD40 /* myStudy_VC.swift in Sources */,
 				4ABF96EF223E1174006FFD40 /* custom_style.swift in Sources */,
 				4AC9A805227EAACE0017EB12 /* TVCell.swift in Sources */,
+				7D77B30122A295C100CECFB7 /* messageVC.swift in Sources */,
 				4ABF971222428C30006FFD40 /* studyDetail_VM.swift in Sources */,
 				4A714A35224E7781004D3156 /* add_Study_V_2.swift in Sources */,
 				4A84A00122633C6200FF06DA /* add_study2_V.swift in Sources */,

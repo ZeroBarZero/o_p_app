@@ -12,67 +12,52 @@ import UIKit
 class studyMesseger_V : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
         self.backgroundColor = .white
+        tableView.backgroundColor = .white
+        initView()
 
-        self.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            
-            tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
-            ])
     }
-    let titleLabel : UILabel = {
-        let label = UILabel()
-        label.text = "  내메신저"
-        label.textAlignment = .left
-        label.textColor = Defaull_style.mainTitleColor
-        label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let tableView : studyMesseger_V_TV = {
-        let view = studyMesseger_V_TV()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-}
-class studyMesseger_V_TV : UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        initView()
     }
     func initView(){
+        
         self.addSubview(tableView)
+        
+        tableView.tableHeaderView = navView
+        navView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 45+24+20)
+        navView.setTitleText(s: "내 메 신 저")
+        
         tableView.register(studyMesseger_V_TV_C.self, forCellReuseIdentifier: "cell")
         
         tableView.delegate = self
         tableView.dataSource = self
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+
             ])
     }
+//    let titleLabel : UILabel = {
+//        let label = UILabel()
+//        label.text = "  내메신저"
+//        label.textAlignment = .left
+//        label.textColor = Defaull_style.mainTitleColor
+//        label.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+    lazy var navView : customNavigationViewWithPlus = {
+        let view = customNavigationViewWithPlus()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     let tableView : UITableView = {
         let table = UITableView()
         //        table.separatorStyle = .none
@@ -81,7 +66,7 @@ class studyMesseger_V_TV : UIView {
         return table
     }()
 }
-extension studyMesseger_V_TV : UITableViewDelegate{
+extension studyMesseger_V : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -89,7 +74,11 @@ extension studyMesseger_V_TV : UITableViewDelegate{
         return UITableView.automaticDimension
     }
 }
-extension studyMesseger_V_TV : UITableViewDataSource{
+extension studyMesseger_V : UITableViewDataSource{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }

@@ -41,10 +41,10 @@ class login_VC : UIViewController {
         super.viewWillAppear(animated)
         print("will check")
 //        IQKeyboardManager.shared.enable = true
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
         gradientInit()
         initView()
-        check()
+//        check()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow),

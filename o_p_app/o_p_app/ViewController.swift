@@ -25,26 +25,26 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
 
         // 탐색하기
         let tabOne = UINavigationController(rootViewController: search_VC())
-        let tabOneBarItem = UITabBarItem(title: "탐색하기", image: UIImage(named: "defaultImage.png"), selectedImage: UIImage(named: "selectedImage.png"))
+        let tabOneBarItem = UITabBarItem(title: "탐색하기", image: UIImage(named: "loupe"), selectedImage: UIImage(named: "loupe"))
         
         tabOne.tabBarItem = tabOneBarItem
         
         
         // 내스터디
         let tabTwo = UINavigationController(rootViewController: myStudy_VC())
-        let tabTwoBarItem2 = UITabBarItem(title: "내스터디", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
+        let tabTwoBarItem2 = UITabBarItem(title: "내스터디", image: UIImage(named: "pencil.png"), selectedImage: UIImage(named: "pencil.png"))
         
         tabTwo.tabBarItem = tabTwoBarItem2
         
         // 내메신저
         let tabThree = studyMessager_VC()
-        let tabThreeBarItem3 = UITabBarItem(title: "내메신저", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
+        let tabThreeBarItem3 = UITabBarItem(title: "내메신저", image: UIImage(named: "speech-bubble.png"), selectedImage: UIImage(named: "speech-bubble.png"))
         
         tabThree.tabBarItem = tabThreeBarItem3
 
         // 내정보
         let tabFour = myInfo_VC()
-        let tabFourBarItem4 = UITabBarItem(title: "내정보", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
+        let tabFourBarItem4 = UITabBarItem(title: "내정보", image: UIImage(named: "resources.png"), selectedImage: UIImage(named: "resources.png"))
         
         tabFour.tabBarItem = tabFourBarItem4
         

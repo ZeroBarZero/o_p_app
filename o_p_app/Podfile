@@ -17,5 +17,5 @@ target 'o_p_app' do
     pod 'RxCocoa'
     pod 'NMapsMap'
     pod 'CenteredCollectionView'
-
+    pod 'InputBarAccessoryView'
 end

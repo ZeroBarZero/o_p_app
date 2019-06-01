@@ -19,29 +19,22 @@ class studyMessager_VC : UIViewController {
         super.viewWillAppear(animated)
 
         view.backgroundColor = .white
-        let mainView = studyMesseger_V()
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(navView)
+
         view.addSubview(mainView)
-        navView.setTitleText(s: "내메신저")
         let margins = view.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
             
-            navView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0),
-            navView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            navView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            
 
-            mainView.topAnchor.constraint(equalTo: navView.bottomAnchor, constant: 0),
+            mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
             mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
             mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
             mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
             ])
 
     }
-    lazy var navView : customNavigationView = {
-        let view = customNavigationView()
+    lazy var mainView  : studyMesseger_V = {
+        let view = studyMesseger_V()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

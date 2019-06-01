@@ -58,7 +58,7 @@ class myStudy_V_TV : UIView {
         
         tableView.tableHeaderView = navView
         navView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 45+24+20)
-        navView.setTitleText(s: "내스터디")
+        navView.setTitleText(s: "내 스 터 디")
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),

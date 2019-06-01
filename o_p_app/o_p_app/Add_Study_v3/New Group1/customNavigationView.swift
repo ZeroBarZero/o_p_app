@@ -20,9 +20,15 @@ class customNavigationView : UIView {
     }
     
     func initView(){
+        self.addSubview(editBtn)
         self.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
+            editBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            editBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+            editBtn.widthAnchor.constraint(equalToConstant: 60),
+            editBtn.heightAnchor.constraint(equalToConstant: 22),
+
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 45),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
@@ -31,6 +37,15 @@ class customNavigationView : UIView {
     func setTitleText(s:String){
         titleLabel.text = s
     }
+    lazy var editBtn : UIButton = {
+        let button = UIButton()
+        button.setTitleColor(Defaull_style.gray112Color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        button.setTitle("수정", for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     lazy var titleLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)

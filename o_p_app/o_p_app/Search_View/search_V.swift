@@ -46,7 +46,7 @@ class search_V : UIView,UIScrollViewDelegate {
         scrollView.addSubview(categoryRecomenLabel)
         scrollView.addSubview(categoryRecomenBtn)
         scrollView.addSubview(categoryRecomendCollectView)
-        navView.setTitleText(s: "탐색하기")
+        navView.setTitleText(s: "탐 색 하 기")
         let margins = self.safeAreaLayoutGuide
 
         // constraint
@@ -698,7 +698,7 @@ class categoryCollectView : UIView, TagListViewDelegate{
 
         //        backgroundColor = .red
         biggerTagListView.delegate = self
-        biggerTagListView.textFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        biggerTagListView.textFont = UIFont.systemFont(ofSize: 16, weight: .regular)
         //        biggerTagListView.cornerRadius = CGFloat(Defaull_style.insideTableViewCorner)
         //        biggerTagListView.shadowRadius = 2
         //        biggerTagListView.shadowOpacity = 0.4

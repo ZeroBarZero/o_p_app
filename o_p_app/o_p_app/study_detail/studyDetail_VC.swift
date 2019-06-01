@@ -30,7 +30,6 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecogn
     // 내 스터디가 아닌 경우에는 없앰
     var bottomViewCheck : Bool? = nil
     @objc func buttonClicked() {
-        //        print("Button Clicked")
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -43,6 +42,7 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecogn
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
@@ -60,10 +60,7 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecogn
 
         self.view.backgroundColor = .white
         self.view.addSubview(mainView)
-//        self.view.addSubview(bottomView)
-        // layout
-//        let margins = view.layoutMarginsGuide
-        
+
         let height = Int(self.view.frame.height/8)
 
         NSLayoutConstraint.activate([

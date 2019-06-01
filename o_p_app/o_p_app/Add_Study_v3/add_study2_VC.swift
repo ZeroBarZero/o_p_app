@@ -11,7 +11,6 @@ import UIKit
 import AnimatedTextInput
 import RxCocoa
 import RxSwift
-
 protocol add_study2_VC_Delegate {
     func backBtn()
     
