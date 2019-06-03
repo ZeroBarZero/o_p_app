@@ -25,26 +25,30 @@ class ViewController: UITabBarController, UITabBarControllerDelegate {
 
         // 탐색하기
         let tabOne = UINavigationController(rootViewController: search_VC())
-        let tabOneBarItem = UITabBarItem(title: "탐색하기", image: UIImage(named: "loupe"), selectedImage: UIImage(named: "loupe"))
+        let image1 = resizedImageWith(image: UIImage(named: "loupe")!, targetSize: CGSize(width: 20, height: 20))
+        let tabOneBarItem = UITabBarItem(title: "탐색하기", image: image1, selectedImage: image1)
         
         tabOne.tabBarItem = tabOneBarItem
         
         
         // 내스터디
         let tabTwo = UINavigationController(rootViewController: myStudy_VC())
-        let tabTwoBarItem2 = UITabBarItem(title: "내스터디", image: UIImage(named: "pencil.png"), selectedImage: UIImage(named: "pencil.png"))
+        let image2 = resizedImageWith(image: UIImage(named: "pencil.png")!, targetSize: CGSize(width: 20, height: 20))
+        let tabTwoBarItem2 = UITabBarItem(title: "내스터디", image: image2, selectedImage: image2)
         
         tabTwo.tabBarItem = tabTwoBarItem2
         
         // 내메신저
         let tabThree = studyMessager_VC()
-        let tabThreeBarItem3 = UITabBarItem(title: "내메신저", image: UIImage(named: "speech-bubble.png"), selectedImage: UIImage(named: "speech-bubble.png"))
+        let image3 = resizedImageWith(image: UIImage(named: "speech-bubble.png")!, targetSize: CGSize(width: 20, height: 20))
+        let tabThreeBarItem3 = UITabBarItem(title: "내메신저", image: image3, selectedImage: image3)
         
         tabThree.tabBarItem = tabThreeBarItem3
 
         // 내정보
         let tabFour = myInfo_VC()
-        let tabFourBarItem4 = UITabBarItem(title: "내정보", image: UIImage(named: "resources.png"), selectedImage: UIImage(named: "resources.png"))
+        let image4 = resizedImageWith(image: UIImage(named: "resources.png")!, targetSize: CGSize(width: 20, height: 20))
+        let tabFourBarItem4 = UITabBarItem(title: "내정보", image: image4, selectedImage: image4)
         
         tabFour.tabBarItem = tabFourBarItem4
         
@@ -103,4 +107,29 @@ extension UITabBarController {
         return self.tabBar.frame.origin.y < view.frame.maxY
     }
 
+}
+
+func resizedImageWith(image: UIImage, targetSize: CGSize) -> UIImage {
+    
+    let imageSize = image.size
+    let newWidth  = targetSize.width  / image.size.width
+    let newHeight = targetSize.height / image.size.height
+    var newSize: CGSize
+    
+    if(newWidth > newHeight) {
+        newSize = CGSize(width: imageSize.width * newHeight, height: imageSize.height * newHeight)
+    } else {
+        newSize = CGSize(width: imageSize.width * newWidth,  height: imageSize.height * newWidth)
+    }
+    
+    let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+    
+    UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+    
+    image.draw(in: rect)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    
+    return newImage
 }

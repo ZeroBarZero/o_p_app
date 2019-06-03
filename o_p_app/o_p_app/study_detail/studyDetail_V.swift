@@ -94,11 +94,9 @@ class studyDetail_V : UIView {
     }
     func initView() {
         self.backgroundColor = .white
-        
-        self.addSubview(navView)
-//        self.addSubview(titleLabel)
-        self.addSubview(descriptionLabel)
 
+        self.addSubview(navView)
+        self.addSubview(descriptionLabel)
         stack.addArrangedSubview(detailLocationLabel)
         stack.addArrangedSubview(memberLabel)
         stack.addArrangedSubview(weekLabel)
@@ -143,7 +141,8 @@ class studyDetail_V : UIView {
             weekInfoTable.topAnchor.constraint(equalTo: descriptionLabel_1.bottomAnchor, constant: 10),
             weekInfoTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Defaull_style.defaultPadding),
             weekInfoTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Defaull_style.defaultPadding),
-            weekInfoTable.heightAnchor.constraint(equalToConstant: 150)
+            weekInfoTable.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+//            weekInfoTable.heightAnchor.constraint(equalToConstant: 150)
             
             ])
         

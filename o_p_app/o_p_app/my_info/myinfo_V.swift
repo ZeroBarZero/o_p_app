@@ -47,7 +47,7 @@ class myinfo_V : UIView {
             nameTitle.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -35),
             
             myDescriptionLabel.topAnchor.constraint(equalTo: avatar.bottomAnchor, constant: 35),
-            myDescriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            myDescriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 35),
             myDescriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -20),
             
             lineView.topAnchor.constraint(equalTo: myDescriptionLabel.bottomAnchor, constant: 35),
@@ -106,7 +106,7 @@ class myinfo_V : UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "멋진 개발자가 되고 싶어요! :>\n현재는 iOS 개발을 하고 있습니다 !"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = Defaull_style.mainTitleColor
         return label

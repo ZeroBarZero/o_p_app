@@ -15,7 +15,6 @@ protocol search_VC_delegate : class {
 
 class search_VC: UIViewController,search_VC_delegate {
     func navMoveDelegate(_ sender: recommendationCollectionView     , index: Int) {
-        print("델리게이트")
         let moveView = studyDetail_VC()
         moveView.bottomViewCheck = true
             
@@ -28,20 +27,13 @@ class search_VC: UIViewController,search_VC_delegate {
         // Do any additional setup after loading the view, typically from a nib.
         mainView.navView.plusBtn.addTarget(self, action: #selector(addBtnEvent), for: .touchUpInside)
     }
-//    @objc func plusEvent(){
-//
-//    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.hideTabBarAnimated(hide: false,completion: {_ in })
 
         navigationController?.setNavigationBarHidden(true, animated: true)
 
-//        DispatchQueue.main.async {
-//            let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addBtnEvent))
-//            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
-//
-//        }
         initView()
         
     }

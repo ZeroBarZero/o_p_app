@@ -14,6 +14,10 @@ protocol studyDetail_VC_Delegate {
     func alertDelegate()
 }
 class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecognizerDelegate{
+    
+    /// 뷰의 bottom 을 선언한다. 가입 신청 뷰를
+    var bottomConstraint : NSLayoutConstraint?
+    
     func alertDelegate() {
         let showAlert = UIAlertController(title: "가입신청이벤트", message: "그냥나중에이벤트", preferredStyle: .alert)
         
@@ -37,9 +41,7 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecogn
         super.viewDidLoad()
         mainView.navView.backBtn.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -59,7 +61,8 @@ class studyDetail_VC : UIViewController, studyDetail_VC_Delegate,UIGestureRecogn
         
 
         self.view.backgroundColor = .white
-        self.view.addSubview(mainView)
+        
+        view.addSubview(mainView)
 
         let height = Int(self.view.frame.height/8)
 
